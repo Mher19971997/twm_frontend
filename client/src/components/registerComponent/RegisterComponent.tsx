@@ -139,66 +139,99 @@ export default function RegisterComponent({ onToggle }: AuthComponentProps) {
         <div className={styles.inputs}>
           {/* Name or Representative */}
           {(role === "client" || role === "agent" || role === "agency") && (
-            <input
-              type="text"
-              placeholder={role === "agency" ? "Representative Name" : "Your Name"}
-              value={name}
-              onChange={(e) => handleInputChange("name", e.target.value)}
-              className={errors.name ? styles.error : ""}
-            />
+            <div style={{ position: 'relative' }}>
+              <div className={styles.yourName}>
+                <YourName />
+              </div>
+              <input
+                type="text"
+                placeholder={role === "agency" ? "Representative Name" : "Your Name"}
+                value={name}
+                onChange={(e) => handleInputChange("name", e.target.value)}
+                className={errors.name ? styles.error : ""}
+              />
+            </div>
           )}
 
           {/* Email */}
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-            className={errors.email ? styles.error : ""}
-          />
+          <div style={{ position: 'relative' }}>
+            <div className={styles.email}>
+              <EmailLogin />
+            </div>
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => handleInputChange("email", e.target.value)}
+              className={errors.email ? styles.error : ""}
+            />
+          </div>
 
-          {/* Passwords */}
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => handleInputChange("password", e.target.value)}
-            className={errors.password ? styles.error : ""}
-          />
+          {/* Password */}
+          <div style={{ position: 'relative' }}>
+            <div className={styles.password}>
+              <PasswordLogin />
+            </div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => handleInputChange("password", e.target.value)}
+              className={errors.password ? styles.error : ""}
+            />
+          </div>
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
-            className={errors.confirmPassword ? styles.error : ""}
-          />
+          {/* Confirm Password */}
+          <div style={{ position: 'relative' }}>
+            <div className={styles.confirmPassword}>
+              <PasswordLogin />
+            </div>
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              value={confirmPassword}
+              onChange={(e) => handleInputChange("confirmPassword", e.target.value)}
+              className={errors.confirmPassword ? styles.error : ""}
+            />
+          </div>
 
           {/* Agent specific */}
           {role === "agent" && (
-            <input
-              type="text"
-              placeholder="Agent License Number"
-              value={agentLicense}
-              onChange={(e) => handleInputChange("agentLicense", e.target.value)}
-            />
+            <div style={{ position: 'relative' }}>
+              <div className={styles.license}>
+              </div>
+              <input
+                type="text"
+                placeholder="Agent License Number"
+                value={agentLicense}
+                onChange={(e) => handleInputChange("agentLicense", e.target.value)}
+              />
+            </div>
           )}
 
           {/* Agency specific */}
           {role === "agency" && (
             <>
-              <input
-                type="text"
-                placeholder="Agency Name"
-                value={agencyName}
-                onChange={(e) => handleInputChange("agencyName", e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="INN"
-                value={agencyINN}
-                onChange={(e) => handleInputChange("agencyINN", e.target.value)}
-              />
+              <div style={{ position: 'relative' }}>
+                <div className={styles.company}>
+                </div>
+                <input
+                  type="text"
+                  placeholder="Agency Name"
+                  value={agencyName}
+                  onChange={(e) => handleInputChange("agencyName", e.target.value)}
+                />
+              </div>
+              <div style={{ position: 'relative' }}>
+                <div className={styles.document}>
+                </div>
+                <input
+                  type="text"
+                  placeholder="INN"
+                  value={agencyINN}
+                  onChange={(e) => handleInputChange("agencyINN", e.target.value)}
+                />
+              </div>
             </>
           )}
         </div>
