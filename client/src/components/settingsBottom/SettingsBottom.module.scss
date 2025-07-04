@@ -1,0 +1,49 @@
+.settingsParent {
+    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.15);
+    background: #fff;
+    border-radius: 10px;
+    padding: 26px 53px 49px 27px;
+    margin: 120px auto;
+    max-width: 800px;
+    width: 100%;
+    .infoAboutProfile {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding-bottom: 50px;
+        @media only screen and (max-width: 450px) {
+            flex-direction: column;
+        }
+        img {
+            @media only screen and (max-width: 507px) {
+                width: 50%;
+                height: auto;
+            }
+            @media only screen and (max-width: 507px) {
+                width: 80%;
+                height: auto;
+            }
+        }
+        .textsInfo {
+            h2 {
+                font-family: var(--font-family);
+                font-weight: 600;
+                font-size: 32px;
+                letter-spacing: 0.04em;
+                color: #000;
+            }
+            .pDiv {
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                p {
+                    font-family: var(--font-family);
+                    font-weight: 300;
+                    font-size: 16px;
+                    letter-spacing: 0.04em;
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+        }
+    }
+}

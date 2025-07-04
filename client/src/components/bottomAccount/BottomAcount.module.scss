@@ -1,0 +1,11 @@
+.parentDiv {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 45px;
+    position: relative;
+    @media only screen and (max-width: 1250px) {
+        justify-content: center;
+        gap: 20px;
+    }
+}

@@ -1,0 +1,120 @@
+.contentFirstAccordion {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    .accordion-content {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+      }
+      
+      .close-button,.unBlock {
+        background: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background 0.3s ease;
+        outline: none;
+      }
+      
+      .close-button:hover {
+        background: #d32f2f;
+      }
+      .modal-close-btn {
+        font-size: 24px;
+        padding: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        background: #d32f2f;
+        color: #fff;
+        border-radius: 5px;
+        float: right;
+        outline: none;
+      }
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 500px;
+        min-height: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        animation: slideIn 0.3s ease-out;
+        p {
+            font-size: 25px;
+            color: #000;
+            margin: auto;
+            text-align: center;
+            padding-top: 80px;
+        }
+      }
+      
+      .modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+      
+      ul {
+        list-style: none;
+        padding-top: 20px;
+    }
+      
+      ul li {
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+      
+      .close-modal-button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-top: 20px;
+        transition: background 0.3s ease;
+      }
+      
+      .close-modal-button:hover {
+        background-color: #388e3c;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      
+      @keyframes slideIn {
+        0% {
+          transform: translateY(-20px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+}

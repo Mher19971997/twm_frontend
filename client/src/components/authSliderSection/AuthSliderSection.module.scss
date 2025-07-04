@@ -1,0 +1,27 @@
+.contentAuthSlider {
+    .titleAuthSlider {
+        max-width: 710px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 85px 0 100px 0;
+        h2 {
+            font-family: var(--font-family);
+            font-weight: 900;
+            font-size: clamp(32px, 4vw, 48px);
+            text-align: center;
+            color: #2c2c2c;
+        }
+    }
+    .authors {
+        .leftAuthors {
+            position: relative;
+        }
+    }
+}
+@media only screen and (max-width: 917px) {
+    .contentAuthSlider {
+        .titleAuthSlider {
+            padding: 50px 0 0px 0;
+        }
+    }
+}

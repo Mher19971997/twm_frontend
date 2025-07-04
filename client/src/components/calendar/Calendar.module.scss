@@ -1,0 +1,135 @@
+@import "../../styles/variables.scss";
+
+.calendarContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: $center;
+  border-radius: 12px;
+  padding: 41px 25.48px 42px 25.48px;
+  position: absolute;
+  left: 0;
+  box-shadow: 0 4px 32px 0 rgba(170, 170, 170, 0.03);
+  background: linear-gradient(180deg, #032182 0%, #056fde 100%);
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: $bold-weight;
+  color: #333;
+
+  span {
+    cursor: $cursor;
+  }
+}
+
+.monthAndYear {
+  font-family: var(--third-family);
+  font-weight: 700;
+  font-size: 20px;
+  text-align: $center;
+  color: $white;
+}
+
+.spansCalendar {
+  display: flex;
+  align-items: $center;
+  gap: 16px;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  width: 100%;
+}
+
+.weekday,
+.day {
+  font-family: var(--third-family);
+  font-weight: 500;
+  font-size: 16px;
+  text-align: $center;
+  color: #fff;
+  user-select: $none;
+}
+
+.weekday {
+  padding: 21px 0 32px 0;
+}
+
+.day {
+  padding: 14px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $white;
+    border-radius: 100%;
+    color: #0574e5;
+  }
+}
+
+.selectedDay {
+  background-color: $white;
+  border-radius: 100%;
+  color: #0574e5;
+}
+
+.emptySlot {
+  visibility: $hidden;
+}
+@media only screen and (max-width: 1657px) {
+  .calendarContainer {
+    padding: 20px;
+  }
+
+  .weekday,
+  .day {
+    font-size: 9px;
+  }
+
+  .monthAndYear {
+    font-size: 16px;
+  }
+
+  .calendarHeader {
+    width: 95%;
+  }
+  .day {
+    padding: 8px;
+  }
+}
+// @media only screen and (max-width: 465px) {
+//   .calendarContainer {
+//     padding: 20px;
+//     top: -390px;
+//     right: 0px;
+//   }
+// }
+
+// @media only screen and (max-width: 427px) {
+//   .calendarContainer {
+//     padding: 20px;
+//     top: -310px;
+//     left: 0;
+//   }
+
+//   .weekday,
+//   .day {
+//     font-size: 13px;
+//   }
+
+//   .monthAndYear {
+//     font-size: 16px;
+//   }
+
+//   .calendarHeader {
+//     width: 95%;
+//   }
+//   .day {
+//     padding: 8px;
+//   }
+// }

@@ -1,0 +1,24 @@
+.cardBlock {
+    padding:140px 0 150px 0 ;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 30px;
+    justify-content: center;
+}
+.responsiveCardsBlock {
+    display: none;
+}
+@media only screen and (max-width: 1418px) {
+    .cardBlock {
+        grid-template-columns: auto auto;
+    }
+}
+@media only screen and (max-width: 702px) {
+    .responsiveCardsBlock {
+        display: block;
+        padding: 50px 0;
+    }
+    .cardBlock {
+        display: none;
+    }
+}

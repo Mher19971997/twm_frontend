@@ -1,0 +1,204 @@
+.headAccordion {
+    position: relative;
+    display: flex;
+    gap: 43px;
+    cursor: pointer;
+    h4 {
+        font-family: var(--font-family);
+        font-weight: 600;
+        font-size: 24px;
+        color: #000;
+    }
+    padding-bottom: 47px;
+}
+.accordionContainer {
+    width: 90%;
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 47px;
+}
+
+.menuButton {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 2px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+}
+
+.content {
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.4s ease, padding 0.4s ease; 
+    border-bottom: 1px solid #f1e0dd;
+    p {
+        font-family: var(--font-family);
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 144%;
+        color: #a79997;
+        padding-bottom: 53px;
+    }
+}
+
+.icon {
+    border-radius: 10px;
+    width: 54px;
+    height: 53px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: -70px;
+    top: 2px;
+}
+
+.greenIcon {
+    background: #edfae3;
+}
+
+.headPhone {
+    background: #fff8e3;
+}
+
+.userIcon {
+    box-shadow: 0 10px 15px 0 rgba(255, 113, 91, 0.25);
+    background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+
+    .userDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2px;
+    }
+}
+@media only screen and (max-width:1862px) {
+    .accordionContainer {
+        max-width: 500px;
+    }
+    .content p {
+        font-size: 15px;
+        padding-bottom: 20px;
+    }
+    .headAccordion h4 {
+        font-size: 20px;
+    }
+}
+@media only screen and (max-width:1588px) {
+    .accordionContainer {
+        max-width: 400px;
+    }
+    .headAccordion h4 {
+        font-size: 16px;
+    }
+    .headAccordion {
+        padding-bottom: 20px;
+    }
+}
+@media only screen and (max-width:1338px) {
+    .headAccordion h4 {
+        font-size: 13px;
+    }
+}
+@media only screen and (max-width:1158px) {
+    .accordionContainer {
+        max-width: 80%;
+        margin: 0 auto;
+    }
+    .content p {
+        font-size: 15px;
+        padding-bottom: 20px;
+    }
+    .headAccordion h4 {
+        font-size: 20px;
+    }
+    .icon {
+        left: 92%;
+        top: 0px;
+    }
+}
+@media only screen and (max-width:860px) {
+    .content p {
+        font-size: 13px;
+    }
+    .icon {
+        left: 90%;
+        top: 0px;
+    }
+    .headAccordion h4 {
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width:716px) {
+    .headAccordion h4 {
+        font-size: 14px;
+    }
+    .icon {
+        left: 87%;
+        top: 0px;
+    }
+}
+@media only screen and (max-width:596px) {
+    .content p {
+        font-size: 14px;
+        padding-bottom: 20px;
+    }
+    .headAccordion h4 {
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width:558px) {
+    .content p {
+        font-size: 11px;
+        padding-bottom: 20px;
+    }
+    .headAccordion h4 {
+        font-size: 14px;
+    }
+} 
+@media only screen and (max-width:500px) {
+    .headAccordion h4 {
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width:440px) {
+    .headAccordion h4 {
+        text-align: start;
+        width: 200px;
+    }
+    .accordionContainer {
+        max-width: 80%;
+    }
+    .icon {
+        width: 33px;
+        height: 33px;
+    }
+    .greenIcon svg,.headPhone svg {
+        width: 20px;
+        height: 20px;
+    }
+    .userIcon{
+        flex-direction: column;
+        row-gap: 1px;
+    }
+    .userIcon svg:first-child {
+        width:6px;
+        height:6px;
+    }
+    .userIcon svg:last-child {
+        width:15px;
+        height:5px;
+    }
+}
+@media only screen and (max-width:350px) {
+    .headAccordion h4 {
+        width: 150px;
+    }
+}

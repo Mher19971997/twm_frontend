@@ -1,0 +1,31 @@
+.user {
+    padding: 25px 0 0 24px;
+    .btnsUser {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-top: 16px;
+    }
+    .userInfo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      .aboutUser {
+        h2 {
+          font-family: var(--second-family);
+          font-weight: 700;
+          font-size: 12px;
+          line-height: 120%;
+          color: #212529;
+        }
+        p {
+          font-family: var(--second-family);
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 140%;
+          color: #adb5bd;
+        }
+      }
+    }
+  }
+  

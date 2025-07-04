@@ -1,0 +1,242 @@
+.contentFooter {
+    padding: 122px 0 90px 135px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 450px 200px 230px 200px;
+    gap: 47px;
+    border-bottom: 1px solid #f5ebe9;
+    h2 {
+        font-family: var(--font-family);
+        font-weight: 700;
+        font-size: 28px;
+        line-height: 93%;
+        color: #000;
+    }
+    .contacts {
+        width: 450px;
+        .logoAndText {
+            display: flex;
+            flex-direction: column;
+            row-gap: 31px;
+            p {
+                font-family: var(--font-family);
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 144%;
+                color: #a79997;
+            }
+        }
+        .infoContacts {
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            .infoItem {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                a {
+                    text-decoration: 0;
+                    font-family: var(--font-family);
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 144%;
+                    color: #a79997;
+                }
+            }
+        }
+    }
+        .linksItem {
+            width: 183px;
+            display: flex;
+            flex-direction: column;
+            row-gap: 30px;
+            .link {
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+            a {
+                text-decoration: 0;
+                font-family: var(--font-family);
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 233%;
+                color: #a79997;
+                &:hover {
+                    background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+            }
+            }
+        }
+    }
+        .subscribe 
+        form {
+            input {
+                border: 1px solid #f5ebe9;
+                max-width: 400px;
+                width: 100%;
+                background: #f8f8f8;
+                padding:20px 0 21px 23px ;
+                outline: none;
+                margin-top: 44px;
+                &::placeholder {
+                    font-family: var(--font-family);
+                    font-weight: 500;
+                    font-size: 16px;
+                    color: rgba(0, 0, 0, 0.4);
+                }
+            }
+            button {
+                border-radius: 9px;
+                width: 200px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 20px 0 23px 0;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+                font-family: var(--font-family);
+                font-weight: 500;
+                font-size: 18px;
+                text-align: center;
+                color: #fff;
+                margin-top: 15px;
+                &:active {
+                    transform: scale(1.095);
+                }
+            }
+        } 
+
+    
+}
+.designBy {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 45px 0 39px 0;
+    p {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 144%;
+    text-align: center;
+    color: #a79997;
+    a {
+        background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+}
+@media only screen and (max-width: 1765px) {
+    .contentFooter {
+        padding: 122px 0 90px 25px;
+        .subscribe 
+        form {
+            input {
+                width: 300px;
+            }
+            }
+    }
+}
+@media only screen and (max-width: 1504px) {
+    .contentFooter {
+        grid-template-columns: auto auto auto auto;
+        .contacts {
+            width: 90%;
+            p {
+                font-size: 15px;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1289px) {
+    .contentFooter {
+        .contacts {
+            p {
+                font-size: 15px;
+            }
+            .infoContacts {
+                .infoItem {
+                    a {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1179px) {
+    .contentFooter {
+        grid-template-columns: auto auto;
+        justify-content: center;
+        row-gap: 40px;
+        .contacts {
+            p {
+                font-size: 18px;
+            }
+            .infoContacts {
+                .infoItem {
+                    a {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}
+@media only screen and (max-width: 778px) {
+    .contentFooter {
+        grid-template-columns: 100%;
+        margin: 0 auto;
+        .contacts {
+            .logoAndText {
+                align-items: center;
+                text-align: center;
+                .infoContacts {
+                    align-items: center;
+                }
+            }
+        }
+        .linksItem {
+            align-items: center;
+            width: 90%;
+            .link {
+                text-align: center;
+            }
+        }
+        .subscribe {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transform: translateX(-15px);
+            form {
+                width: 100%;
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                input {
+                    width: 100%;
+                }
+            }
+        } 
+    }
+}
+@media only screen and (max-width: 405px) {
+    .contentFooter {
+        .contacts {
+            .logoAndText {
+                .infoContacts {
+                    a {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

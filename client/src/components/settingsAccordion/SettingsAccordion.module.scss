@@ -1,0 +1,142 @@
+.headAccordion {
+    position: relative;
+    display: flex;
+    gap: 43px;
+    cursor: pointer;
+    h4 {
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 20px;
+      letter-spacing: 0.04em;
+      color: #000;
+      @media only screen and (max-width: 470px) {
+        font-size: 15px;
+      }
+      @media only screen and (max-width: 395px) {
+        font-size: 12px;
+      }
+    }
+  }
+  .accordionContainer {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 47px;
+  }
+  
+  .menuButton {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 2px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    @media only screen and (max-width:395px) {
+        padding: 10px 0;
+    }
+  
+    .textAndIcon {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+  
+      .svgWithBackground {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(180deg, #0575e6 0%, #031c7b 100%);
+        border-radius: 25px;
+      }
+    }
+  }
+  
+  .accordionIconSettings {
+    transition: transform 0.4s ease;
+  }
+  
+  .menuButton.open .accordionIconSettings {
+    transform: rotate(90deg);
+  }
+  
+  .content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    border-bottom: 1px solid #f1e0dd;
+  
+    p {
+        font-family: var(--font-family);
+        font-weight: 300;
+        font-size: 16px;
+        letter-spacing: 0.04em;
+        color: rgba(0, 0, 0, 0.54);
+    }
+}
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Hurin Seary",
+//   icon: (
+//     <div className={styles.icon}>
+//       <p>2</p>
+//     </div>
+//   ),
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Victor Exrixon",
+//   icon: <div className={styles.iconOnline}></div>,
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Surfiya Zakir",
+//   icon: <div className={styles.iconOfline}></div>,
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Goria Coast",
+//   icon: <div className={styles.iconOnline}></div>,
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Hurin Seary",
+//   icon: (
+//     <div className={styles.lastOnline}>
+//       <p>4:09 pm</p>
+//     </div>
+//   ),
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "David Goria",
+//   icon: (
+//     <div className={styles.lastOnline}>
+//       <p>2 days</p>
+//     </div>
+//   ),
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Seary Victor",
+//   icon: <div className={styles.iconOnline}></div>,
+// },
+// {
+//   image: User.src,
+//   alt: "User",
+//   userName: "Ana Seary",
+//   icon: <div className={styles.iconOnline}></div>,
+// },

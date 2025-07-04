@@ -1,0 +1,272 @@
+.contentDownload {
+    background: linear-gradient(90deg, #a6f2f2 0%, #ddf181 100%);
+    padding: 31px 0 0 134px;
+    max-width: 1740px;
+    width: 100%;
+    margin-top: 176px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    .textsDownload {
+        width: 619px;
+        h2 {
+            font-family: var(--font-family);
+            font-weight: 900;
+            font-size: 48px;
+            color: #2c2c2c;
+        }
+        .btnsDownload {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            padding-top:60px ;
+            button {
+                height: 60px;
+                width: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                outline: none;
+                border-radius: 15px;
+                border: none;
+            }
+            .playMarket {
+                background:#2c2c2c;
+            }
+            .appStore {
+                background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);;
+            }
+        }
+    }
+    .appImage {
+        position: relative;
+        right: 93px;
+        width: 746px;
+        height: 515px;
+        bottom: 0;
+        img {
+            position: absolute;
+            user-select: none;
+        }
+        .air {
+            right: 350px;
+        }
+        .appOne {
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+        .appTwo {
+            background: url("../../../public/assets/png/appTwo.png");
+            background-repeat: no-repeat;
+            width: 302px;
+            height: 368px;
+            display: flex;
+            flex-direction: column-reverse;
+            align-items: center;
+            row-gap: 14px;
+            padding-top: 28px;
+            position: absolute;
+            right: 220px;
+            bottom: -10px;
+            z-index: 1;
+            padding-bottom: 15px;
+        }
+        .imageAppTwo {
+            margin-bottom: 100px;
+        }
+    }
+}
+@media only screen and (max-width: 1675px) {
+    .contentDownload {
+        .textsDownload {
+            width: 420px;
+            h2 {
+                font-size: 36px;
+            }
+        }
+        .appImage {
+            .air {
+                right: 150px;
+                top: -5px;
+            }
+            .appOne {
+                width: 260px;
+                height: auto;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1345px) {
+    .contentDownload {
+        padding: 31px 0 0 0;
+        flex-direction: column;
+        row-gap: 100px;
+        .textsDownload {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h2 {
+                font-size: 48px;
+                text-align: center;
+            }
+        }
+        .appImage {
+            right: 0;
+            .air {
+            top: 0px;
+            right: 400px;
+        }
+        .appOne {
+            width: 350px;
+            height: auto;
+        }
+    }
+}
+}
+@media only screen and (max-width: 1124px) {
+    .contentDownload {
+        padding: 31px 0 0 0;
+        flex-direction: column;
+        row-gap: 100px;
+        .appImage {
+            margin: 0 auto;
+            right: 0;
+            .air {
+            top: -50px;
+            right: 300px;
+        }
+        .appOne {
+            width: 300px;
+            height: auto;
+        }
+    }
+}
+}
+@media only screen and (max-width: 930px) {
+    .contentDownload {
+        padding: 31px 0 0 0;
+        flex-direction: column;
+        row-gap: 100px;
+        .appImage {
+            width: 415px;
+            left: 10%;
+            .air {
+            top: -50px;
+            right: 100px;
+        }
+        .appOne {
+            width: 250px;
+            height: auto;
+        }
+    }
+}
+}
+@media only screen and (max-width: 614px) {
+    .contentDownload {
+        .textsDownload {
+            h2 {
+                font-size: 30px;
+            }
+        }
+        .appImage {
+            width: 300px;
+            left: 10%;
+            .air {
+            top: -50px;
+            right: 0px;
+            width: 400px;
+            height: auto;
+            }
+            .appOne {
+                width: 250px;
+                height: auto;
+            }
+            .appTwo {
+                width: 300px;
+                height: 300px;
+                left: -70px;
+                img {
+                    width: 170px;
+                    height: auto;
+                }
+            }
+    }
+}
+}
+@media only screen and (max-width: 493px) {
+    .contentDownload {
+        .textsDownload {
+            .btnsDownload {
+                flex-direction: column;
+                row-gap: 20px;
+            }
+        }
+        .appImage {
+            width: 300px;
+            left: 13%;
+            .air {
+            top: -80px;
+            left: -50px;
+            width: 220px;
+            height: auto;
+            }
+            .appOne {
+                width: 200px;
+                height: auto;
+                top: 0;
+                right: 90px;
+            }
+            .appTwo {
+                width: 300px;
+                height: 300px;
+                left: -50px;
+                img {
+                    width: 170px;
+                    height: auto;
+                }
+            }
+    }
+}
+}
+@media only screen and (max-width: 390px) {
+    .contentDownload {
+        .textsDownload {
+            .btnsDownload {
+                flex-direction: column;
+                row-gap: 20px;
+            }
+            h2 {
+                font-size: 28px;
+            }
+        }
+        .appImage {
+            width: 300px;
+            left: 15%;
+            .air {
+            top: -80px;
+            left: -50px;
+            width: 220px;
+            height: auto;
+            }
+            .appOne {
+                width: 200px;
+                height: auto;
+                top: 0;
+                right: 90px;
+            }
+            .appTwo {
+                width: 300px;
+                height: 300px;
+                left: -50px;
+                img {
+                    width: 170px;
+                    height: auto;
+                }
+            }
+    }
+}
+}

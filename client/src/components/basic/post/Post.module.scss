@@ -1,0 +1,330 @@
+.post {
+  max-width: 760px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.05);
+  background: #fff;
+  padding: 24px;
+
+  .thumbnail {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+    position: relative;
+    z-index: 100;
+  }
+
+  .thumbnail:hover {
+    transform: scale(1.05);
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: auto;
+
+    .galleryContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 100vh;
+    }
+    .activeImage {
+      max-width: 100%;
+      max-height: 100%;
+      text-align: center;
+
+      @media only screen and (max-width: 966px) {
+        max-width: 80%;
+      }
+    }
+
+
+    .galleryImages {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      overflow-x: auto;
+    }
+  }
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 40px;
+    color: #3377d6;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .prevButton {
+    left: 2%;
+  }
+
+  .nextButton {
+    right: 2%;
+  }
+
+  .prevButton:hover,
+  .nextButton:hover {
+    color: #ff5a5a;
+  }
+
+  .galleryImages {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    position: relative;
+
+    img {
+      width: 50%;
+      height: auto;
+      &:hover {
+        transform: scale(1);
+      }
+    }
+  }
+  .modalLargeImage {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: auto;
+    justify-content: center;
+    .imageNavigation {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      button {
+        color: #fff;
+        width: 8px;
+        height: 8px;
+        z-index: 1000;
+      }
+      .prevButton {
+        position: absolute;
+        left: 0;
+      }
+      .nextButton {
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+
+  .largeImage {
+    width: 100vw;
+    height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    z-index: 11;
+    position: absolute;
+    left: 0;
+    top: 10%;
+  }
+
+  .closeButton {
+    position: fixed;
+    left: 0;
+    top: -10px;
+    margin-left: 20px;
+    font-size: 70px;
+    color: #3377d6;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 100;
+  }
+
+  .closeButton:hover {
+    color: red;
+  }
+
+  .topPost {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 16px;
+  }
+
+  .authorPost {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+
+      h2 {
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 120%;
+        color: #212529;
+      }
+
+      p {
+        font-family: var(--second-family);
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 140%;
+        color: #adb5bd;
+      }
+    }
+  }
+
+  .contentPost {
+    position: relative;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+
+    .video {
+      max-width: 700px;
+      width: 100%;
+      height: auto;
+      margin: 0 auto;
+      overflow: hidden;
+
+      iframe,
+      video {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .images {
+      display: flex;
+      align-items: end;
+      gap: 6px;
+      padding-top: 26px;
+      width: 100%;
+      height: auto;
+
+      img {
+        width: 200px;
+        height: 134px;
+        object-fit: cover;
+        z-index: 0;
+        @media only screen and (max-width: 1534px) {
+          width: 150px;
+        }
+      }
+
+      div {
+        border-radius: 5px;
+        width: 100%;
+        height: 134px;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        p {
+          font-family: var(--second-family);
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 175%;
+          letter-spacing: 0.05em;
+          text-align: center;
+          color: #fff;
+          border: none;
+        }
+      }
+
+      &.oneImage {
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+
+      &.twoImages {
+        img {
+          width: calc(70% - 6px);
+        }
+      }
+
+      &.moreThanTwoImages {
+        img {
+          width: calc(33.33% - 6px);
+        }
+      }
+
+      .viewAll {
+        p {
+          font-family: var(--second-family);
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 175%;
+          letter-spacing: 0.05em;
+          text-align: center;
+          color: #fff;
+        }
+      }
+    }
+
+    .hiddenText {
+      font-family: var(--second-family);
+      font-weight: 500;
+      font-size: 17px;
+      line-height: 217%;
+      color: #adb5bd;
+      max-width: 100%;
+      width: 100%;
+      padding-top: 15px;
+
+      .secondPart {
+        font-family: var(--second-family);
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 217%;
+        color: #adb5bd;
+        max-width: 549px;
+        width: 100%;
+      }
+
+      .toggleButton {
+        font-family: var(--second-family);
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 217%;
+        color: #1e74fd;
+        cursor: pointer;
+        margin-left: 4px;
+      }
+    }
+  }
+}
+

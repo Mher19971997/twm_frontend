@@ -1,0 +1,321 @@
+.overlay {
+  z-index: 100;
+}
+.parentRightAccount {
+    position: relative;
+    max-width: 300px;
+    width: 100%;
+      .noContacts {
+        font-family: var(--second-family);
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 100%;
+        text-align: center;
+        color: #25538f;
+      }
+      .textarea {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 20px;
+      }
+      
+      .modalActions {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+      }
+      
+      .viewBlockedButton {
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        position: absolute;
+        top: -120px;
+        left: 20px;
+      }
+      
+      .blockedUsersModal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .blockedUserItem {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        background: #f9f9f9;
+        border-radius: 5px;
+        margin: 5px 0;
+      }
+      
+      .unblockButton {
+        padding: 5px 10px;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .unblockButton:hover {
+        background-color: #c0392b;
+      }
+      
+      .closeBlockedModalButton {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .closeBlockedModalButton:hover {
+        background-color: #2980b9;
+      }
+      
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9;
+      }
+      
+      .modalContent {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 450px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+        .headerModalContent {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-direction: row-reverse;
+          gap: 30px;
+        }
+        h2 {
+            font-family: var(--font-family);
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 100%;
+            text-align: center;
+            color: #566a7d;
+        }
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        resize: none;
+        outline: none;
+      }
+      
+      .modalActions {
+        display: flex;
+        justify-content: space-between;
+      }
+      
+      .postButton,
+      .blockButton,
+      .leaveButton,
+      .goToAccountButton,
+      .sendMessageButton {
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: var(--font-family);
+        text-align: center;
+      }
+      .sendMessageButton {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .goToAccountButton {
+        text-decoration: 0;
+        color: #fff;
+        background-color: #274d70;
+      }
+      .postButton {
+        background-color: #4CAF50;
+        color: white;
+      }
+      .blockButton,.leaveButton {
+        color: #fff;
+        background-color: red;
+      }
+      .closeButton {
+        // position: absolute;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        outline: none;
+        width: 30px;
+        padding: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        // transform: translateX(340px);
+        z-index: 100;
+      }
+      
+      .postButton:hover {
+        background-color: #45a049;
+      }
+      
+      .closeButton:hover {
+        background-color: #e53935;
+      }
+      
+    .contentRightAccount {
+        box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.05);
+        background: #fff;
+        border-radius: 15px;
+        max-width: 300px;
+        width: 300px;
+        padding: 24px 16px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 24px;
+        max-height: 834px;
+        h2 {
+            font-family: var(--font-family);
+            font-weight: 700;
+            font-size: 10px;
+            line-height: 120%;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #adb5bd;
+            padding-bottom: 8px;
+        }
+        h4 {
+            font-family: var(--font-family);
+            font-weight: 700;
+            font-size: 12px;
+            line-height: 120%;
+            color: #6c757d;
+        }
+        .userAndName {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .contact {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            cursor: pointer;
+        }
+        .contacts {
+            .users {
+                display: flex;
+                flex-direction: column;
+                row-gap: 16px;
+            }
+        }
+        .icon {
+            border-radius: 160px;
+            width: 22px;
+            height: 22px;
+            background: #1e74fd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+                font-family: var(--second-family);
+                font-weight: 500;
+                font-size: 12px;
+                text-align: center;
+                color: #fff;
+            }
+        }
+        .iconOnline {
+            border-radius: 8px;
+            width: 8px;
+            height: 8px;
+            background: #10d876;
+        }
+        .iconOfline {
+            border-radius: 8px;
+            width: 8px;
+            height: 8px;
+            background: #fe9431;
+        }
+        .lastOnline {
+            margin-right: 20px;
+            p {
+                font-family: var(--font-family);
+                font-weight: 700;
+                font-size: 10px;
+                line-height: 100%;
+                text-align: center;
+                color: #adb5bd;
+            }
+        }
+        .firstGroup {
+            background: linear-gradient(135deg, #05f 0%, #09f 100%);
+        }
+        .secondGroup {
+            background: linear-gradient(90deg, #f2994a 0%, #f2c94c 100%);            
+        }
+        .thirdGroup {
+            background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);            
+        }
+    }
+    @media only screen and (max-width: 1620px) {
+        .contentRightAccount {
+            row-gap: 5px;
+            .contacts {
+                .users {
+                    row-gap: 5px;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1460px) {
+        .contentRightAccount {
+          max-height: 560px;
+          overflow-y: auto;
+          row-gap: 16px;
+          scrollbar-width: thin;
+          scrollbar-color: #f1f1f1 #f1f1f100;
+            .groupAvatar {
+                margin-bottom: 5px;
+            }
+            .groups,.pages {
+                .userAndName {
+                    h4 {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 1200px) {
+        display: none;
+    }
+}

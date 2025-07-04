@@ -1,0 +1,194 @@
+.registerComponent {
+    padding:77px 210px 0 0;
+    form {
+        width: 350px;
+        float: right;
+        display: flex;
+        flex-direction: column;
+        p {
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0.05em;
+            color: #a6a6a6;
+            padding-top: 15px;
+            span {
+                font-weight: 700;
+                text-decoration: underline;
+                text-decoration-skip-ink: none;
+                color: #ff715b;
+                cursor: pointer;
+            }
+        }
+        button {
+            border: 1px solid #2c2c2c;
+            border-radius: 7px;
+            outline: none;
+            background: #2c2c2c;
+            cursor: pointer;
+            padding: 18px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            color: #fff;
+        }
+        .acceptTerms {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 36px;
+            label {
+                font-family: var(--font-family);
+                font-weight: 300;
+                font-size: 15px;
+                letter-spacing: 0.05em;
+                color: #898484;
+            }
+        }
+        h2 {
+            width: 218px;
+            font-family: var(--font-family);
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 150%;
+            letter-spacing: 0.05em;
+            color: #000;
+        }
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            position: relative;
+            margin-top: 23px;
+            margin-bottom: 15px;
+            .yourName,.email,.password,.confirmPassword {
+                position: absolute;
+                left: 15px;
+            }
+            .yourName {
+                top: 10px;
+            }
+            .email {
+                top: 95px;
+            }
+            .password {
+                bottom: 90px;
+            }
+            .confirmPassword {
+                bottom: 10px;
+            }
+            input {
+                width: 100%;
+                border: 1px solid #a6a6a6;
+                border-radius: 7px;
+                padding: 18px 0 18px 50px;
+                width: 100%;
+                outline: none;
+                &::placeholder {
+                    font-family: var(--font-family);
+                    font-weight: 900;
+                    font-size: 15px;
+                    line-height: 320%;
+                    letter-spacing: 0.05em;
+                    color: rgba(180, 180, 180, 0.69);
+                }
+            }
+            .error {
+                border: 1px solid red;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1680px) {
+    .registerComponent {
+        padding: 77px 0px 0 0;
+    }
+}
+@media only screen and (max-width: 1526px) {
+    .registerComponent {
+        padding: 27px 0px 0 0;
+    }
+}
+@media only screen and (max-width: 994px) {
+    .registerComponent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        form {
+            float: none;
+            h2 {
+                width: 100%;
+                font-size: 26px;
+                text-align: center;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .registerComponent {
+        padding: 27px 0px 0 0;
+    }
+}
+@media only screen and (max-width: 392px) {
+    .registerComponent {
+        form {
+            width: 100%;
+            h2 {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+.roleSelector {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  gap: 10px;
+
+  label {
+    flex: 1;
+    padding: 12px 15px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 15px;
+    color: #2c2c2c;
+    text-align: center;
+    transition: all 0.3s ease;
+
+    input {
+      display: none;
+    }
+
+    &:hover {
+      background-color: #e9e9e9;
+    }
+  }
+
+  input:checked + span {
+    color: #fff;
+    background-color: #2c2c2c;
+    border-color: #2c2c2c;
+  }
+
+  input:checked + label {
+    background-color: #2c2c2c;
+    color: #fff;
+    border: 1px solid #2c2c2c;
+  }
+
+  // Optional: glowing effect for active role
+  input:checked + label {
+    box-shadow: 0 0 0 2px #ff715b40;
+  }
+}

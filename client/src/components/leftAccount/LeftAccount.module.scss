@@ -1,0 +1,134 @@
+.parentLeftAccount {
+  position: relative;
+  max-width: 300px;
+  width: 100%;
+}
+  .modalUserList {
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .contentLeftAccount {
+    display: flex;
+    flex-direction: column;
+    row-gap: 45px;
+    img {
+      user-select: none;
+    }
+    .userContent {
+      box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.15);
+      background: #fff;
+      border-radius: 10px;
+      max-width: 300px;
+      width: 100%;
+      height: 303px;
+      padding: 26px 53px 0 10px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 15px;
+      .userContentItem {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        p {
+          font-family: var(--font-family);
+          font-weight: 500;
+          font-size: 16px;
+          letter-spacing: 0.04em;
+          color: rgba(0, 0, 0, 0.6);
+        }
+      }
+    }
+    .userRequest {
+      border-radius: 15px;
+      max-width: 300px;
+      width: 100%;
+      padding: 26px 0 24px 0;
+      box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.05);
+      background: #fff;
+      .usersBlock {
+        height: 350px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+    }
+    .suggestGroup {
+      max-width: 300px;
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px 0 rgba(0, 0, 0, 0.05);
+      background: #fff;
+      padding: 26px 0px 71px 0px;
+    }
+}
+@media only screen and (max-width: 2660px) {
+  .parentLeftAccount {
+    .contentLeftAccount {
+      row-gap: 15px;
+      .userRequest {
+        .usersBlock {
+          height: 250px;
+        }
+      }
+      .titleRequest {
+        padding: 0 24px 10px 24px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1840px) {
+  .parentLeftAccount {
+    .contentLeftAccount {
+      .userRequest {
+        .usersBlock {
+          height: 150px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1700px) {
+  .parentLeftAccount {
+    .contentLeftAccount {
+      .userContent {
+        height: 203px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1513px) {
+  .parentLeftAccount {
+    .contentLeftAccount {
+      .userContent {
+        padding: 26px 33px 0 10px;
+        height: 153px;
+      }
+      .suggestGroup {
+        padding: 10px 5px 60px 5px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1320px) {
+  .parentLeftAccount {
+    .contentLeftAccount {
+      .userContent {
+        padding: 10px 33px 0 10px;
+        max-height: 120px;
+      }
+      .userRequest {
+        padding: 10px 0;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .parentLeftAccount {
+    display: none;
+  }
+}

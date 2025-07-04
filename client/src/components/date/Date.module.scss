@@ -1,0 +1,68 @@
+@import "../../styles/variables.scss";
+.datePicker {
+  position: relative;
+
+  .dateDisplay {
+    width: 240px;
+    cursor: $cursor;
+    display: flex;
+    align-items: $center;
+    justify-content: space-between;
+    border-bottom: 1px solid #f5ebe9;
+    padding-bottom: 13px;
+
+    span {
+      font-family: var(--font-family);
+      font-weight: 600;
+      font-size: 18px;
+      background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    svg {
+      path {
+        fill: #021c7a;
+      }
+    }
+  }
+
+  .calendarWrapper {
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    margin-top: 8px;
+  }
+  
+  .calendarWrapper.bottom {
+    top: 100%;
+  }
+  
+  .calendarWrapper.top {
+    bottom: 540px;
+    margin-bottom: 8px;
+  }
+}
+@media only screen and (max-width: 1915px) {
+  .datePicker .dateDisplay {
+    width: 180px;
+
+    span {
+      font-size: 15px;
+    }
+  }
+}
+
+@media only screen and (max-width: 1657px) {
+  .datePicker .dateDisplay {
+    width: 240px;
+
+    span {
+      font-size: 15px;
+    }
+  }
+  .calendarWrapper {
+    top: -280px;
+  }
+}

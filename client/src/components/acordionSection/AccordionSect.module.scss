@@ -1,0 +1,325 @@
+.accordionSect {
+    padding-bottom: 300px;
+    .leftAccordionSect {
+        width: 832px;
+        position: relative;
+        .egyptImg {
+            position: absolute;
+            z-index: 10;
+            right: 60px;
+            user-select: none;
+        }
+        .dotsAccordion {
+            position: absolute;
+            z-index: 1;
+            left: 80px;
+            top: 630px;
+        }
+        .yellowBlock {
+            position: absolute;
+            right: 0;
+            top: -50px;
+            border-radius: 12px;
+            width: 153px;
+            height: 151px;
+            background: #ffca45;
+            z-index: 1;
+        }
+        .circleAccordion {
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 350px;
+        }
+        .blueBlur {
+            position: absolute;
+            top: 50px;
+            left: 130px;
+            width: 278px;
+            height: 654px;
+            filter: blur(100px);
+            background: #d3e2ff;
+            z-index: -1;
+        }
+        .redBlur {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 233px;
+            height: 677px;
+            filter: blur(150px);
+            background: #ffcbc3;
+            z-index: -1;
+        }
+    }
+
+.accordionContainer {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .menuButton {
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 2px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+  }
+
+  .content {
+    padding: 0 20px;
+    background-color: #f2f2f2;
+    transition: height 0.4s ease;
+    height: 0;
+    overflow: hidden;
+  }
+  .icon {
+      border-radius: 10px;
+      width: 54px;
+      height: 53px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .greenIcon {
+    background: #edfae3;
+  }
+  .headPhone {
+    background: #fff8e3;
+  }
+  .userIcon {
+    box-shadow: 0 10px 15px 0 rgba(255, 113, 91, 0.25);
+    background: linear-gradient(180deg, #0574e5 0%, #021c7a 100%);
+    .userDiv {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2px;
+    }
+}
+}
+    .contentAccordionSect {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 203px;
+        .rightAccordionSect {
+            display: flex;
+            flex-direction: column;
+            row-gap: 97px;
+            padding-top: 40px;
+            h2 {
+                width: 301px;
+                transform: translateX(-12%);
+                font-family: var(--font-family);
+                font-weight: 900;
+                font-size: 48px;
+                font-variant: small-caps;
+                color: #000;
+            }
+        }
+        .leftAccordionSect {
+            width: 832px;
+            position: relative;
+
+            .egyptImg {
+                position: absolute;
+                z-index: 10;
+                right: 60px;
+                user-select: none;
+            }
+
+            .dotsAccordion {
+                position: absolute;
+                z-index: 1;
+                left: 80px;
+                top: 630px;
+            }
+
+            .yellowBlock {
+                position: absolute;
+                right: 0;
+                top: -50px;
+                border-radius: 12px;
+                width: 153px;
+                height: 151px;
+                background: #ffca45;
+                z-index: 1;
+            }
+
+            .circleAccordion {
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                top: 350px;
+            }
+
+            .blueBlur {
+                position: absolute;
+                top: 50px;
+                left: 130px;
+                width: 278px;
+                height: 654px;
+                filter: blur(100px);
+                background: #d3e2ff;
+                z-index: -1;
+            }
+
+            .redBlur {
+                right: 0;
+                position: absolute;
+                top: 50px;
+                width: 233px;
+                height: 677px;
+                filter: blur(150px);
+                background: #ffcbc3;
+                z-index: -1;
+            }
+        }
+    }
+@media only screen and (max-width:1626px) {
+    .accordionSect .contentAccordionSect .leftAccordionSect .blueBlur, .leftAccordionSect .redBlur{
+        width: 332px !important;
+        height: 300px !important;
+    }
+}
+@media only screen and (max-width:1463px) {
+    .accordionSect .contentAccordionSect .rightAccordionSect h2 {
+        font-size: 30px;
+    }
+    .accordionSect .contentAccordionSect .rightAccordionSect {
+        padding-top: 100px;
+    }
+    .leftAccordionSect {
+        width: 632px;
+        .egyptImg {
+            width: 452px;
+            height: auto;
+            left: 150px;
+            top: 50px;
+        }
+        .yellowBlock {
+            left: 100px;
+        }
+        .dotsAccordion {
+            transform: translateY(-70%);
+        }
+    }
+}
+@media only screen and (max-width:1158px) {
+    .accordionSect .contentAccordionSect .rightAccordionSect h2 {
+        width: 100%;
+        font-size: 35px;
+        text-align: center;
+        transform: translateX(0.1px);
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .redBlur {
+        display: none;
+    }
+    .accordionSect .contentAccordionSect .rightAccordionSect {
+        padding: 0px;
+    }
+    .contentAccordionSect {
+        padding-top: 50px !important;
+        flex-direction: column-reverse;
+        margin: 0 auto;
+        row-gap: 100px;
+        align-items: center;
+    }
+    .accordionSect {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .leftAccordionSect .dotsAccordion {
+        transform: translateX(220%) translateY(-80%);
+    }
+    .accordionSect {
+        padding-bottom: 750px;
+    }
+}
+@media only screen and (max-width:860px) {
+    .accordionSect {
+        margin: 0 auto;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect {
+        width: 432px;
+        right: 150px;
+        .egyptImg {
+            width: 300px;
+        }
+    }
+    .leftAccordionSect .dotsAccordion {
+        transform: translateX(140%) translateY(-160%) ;
+    }
+    .leftAccordionSect .circleAccordion {
+        transform: translateX(950%) translateY(-200%);
+    }
+    .accordionSect {
+        padding-bottom: 600px;
+    }
+}
+@media only screen and (max-width:752px) {
+    .leftAccordionSect .circleAccordion {
+        display: none;
+    }
+    .leftAccordionSect .blueBlur, .leftAccordionSect .redBlur {
+        display: none;
+    }
+}
+@media only screen and (max-width:558px) {
+    .accordionSect .contentAccordionSect .rightAccordionSect h2 {
+        width: 100% ;
+        font-size: 30px ;
+    }
+}
+@media only screen and (max-width:536px) {
+    .accordionSect .contentAccordionSect .leftAccordionSect .egyptImg {
+        width: 250px;
+        left: 50%;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .dotsAccordion {
+        width: 100px;
+        transform: translateX(260%) translateY(-205%) ;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .yellowBlock {
+        width: 90px;
+        height: 90px;
+        left: 40%;
+        top: 15%;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect {
+        width: 300px;
+    }
+    .accordionSect {
+        padding-bottom:450px;
+    }
+}
+@media only screen and (max-width:400px) {
+    .accordionSect {
+        padding-bottom:400px;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .egyptImg {
+        width: 200px;
+        left: 60%;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .yellowBlock {
+        width: 70px;
+        height: 70px;
+        left: 50%;
+        top: 20%;
+    }
+    .accordionSect .contentAccordionSect .leftAccordionSect .dotsAccordion {
+        transform: translateX(240%) translateY(-240%) ;
+    }
+    .accordionSect .contentAccordionSect .rightAccordionSect h2 {
+        width: 100% ;
+        font-size: 25px ;
+    }
+}

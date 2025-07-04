@@ -1,0 +1,210 @@
+.contentLoginComponent {
+    padding: 77px 230px 0px 0;
+    form {
+        width: 350px;
+        display: flex;
+        flex-direction: column;
+        float: right;
+        // margin-bottom: 20px;
+        .errorMessage {
+            font-family: var(--font-family);
+            color: red;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        button {
+            border: 1px solid #2c2c2c;
+            border-radius: 7px;
+            width: 100%;
+            background: #2c2c2c;
+            padding: 18px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            outline: none;
+            font-family: var(--font-family);
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: 0.05em;
+            color: #fff;
+            margin-top:26px;
+        }
+        h2 {
+            width: 218px;
+            font-family: var(--font-family);
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 150%;
+            letter-spacing: 0.05em;
+            color: #000;
+        }
+        
+        .inputsLogin {
+            position: relative;
+            input {
+                outline: none;
+                color: #000;
+                width: 100%;
+                padding: 18px 0 18px 50px;
+                border: 1px solid #a6a6a6;
+                border-radius: 7px;
+                margin-top: 25px;
+                &::placeholder {
+                    font-family: var(--font-family);
+                    font-weight: 900;
+                    font-size: 15px;
+                    line-height: 320%;
+                    letter-spacing: 0.05em;
+                    color: rgba(180, 180, 180, 0.69);
+                }
+                &.error {
+                    border: 1px solid red;
+                }
+            }
+            .emailIcon {
+                position: absolute;
+                top: 40px;
+                left: 15px;
+            }
+            .passwordIcon {
+                position: absolute;
+                top: 115px;
+                left: 15px;
+            }
+        }
+        .forgotAndRemember {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 15px;
+            .rememberMe {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                label {
+                    font-family: var(--font-family);
+                    font-weight: 300;
+                    font-size: 15px;
+                    letter-spacing: 0.05em;
+                    color: #898484;
+                    user-select: none;
+                }
+            }
+            p {
+                font-family: var(--font-family);
+                font-weight: 300;
+                font-size: 15px;
+                letter-spacing: 0.05em;
+                color: #000;
+                cursor: pointer;
+            }
+        }
+        .registerNewAccount {
+            padding-top: 15px;
+            p {
+                font-family: var(--font-family);
+                font-weight: 600;
+                font-size: 16px;
+                letter-spacing: 0.05em;
+                color: #a6a6a6;
+                span {
+                    font-weight: 700;
+                    text-decoration-skip-ink: none;
+                    background: linear-gradient(180deg, #0575e6 0%, #031c7b 100%);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    border-bottom: 1px solid transparent;
+                    border-image: linear-gradient(180deg, #0575e6 0%, #031c7b 100%);
+                    border-image-slice: 1;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .signInWithBrowsers {
+        padding-top: 25px;
+        p {
+            font-family: var(--font-family);
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 0.05em;
+            color: #a6a6a6;
+            text-align: center;
+        }
+        .facebook {
+            background: #3b5999;
+        }
+        .google {
+            background: #0d66ff;
+            margin: 15px 0 10px 0;
+        }
+        a {
+            text-decoration: 0;
+            width: 100%;
+            border-radius: 7px;
+            padding: 8px 0 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 34px;
+            p {
+                font-family: var(--font-family);
+                font-weight: 900;
+                font-size: 16px;
+                line-height: 300%;
+                letter-spacing: 0.05em;
+                color: #fff;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 1680px) {
+    .contentLoginComponent {
+        padding: 77px 0px 0 0;
+    }
+}
+@media only screen and (max-width: 1526px) {
+    .contentLoginComponent {
+        padding: 27px 0px 0 0;
+        form {
+            margin-bottom: 20px;
+        }
+    }
+}
+@media only screen and (max-width: 994px) {
+    .contentLoginComponent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        form {
+            float: none;
+            h2 {
+                width: 100%;
+                font-size: 26px;
+                text-align: center;
+            }
+        }
+    }
+}
+@media only screen and (max-width: 600px) {
+    .contentLoginComponent {
+        padding: 27px 0px 0 0;
+    }
+}
+@media only screen and (max-width: 392px) {
+    .contentLoginComponent {
+        form {
+            width: 100%;
+            h2 {
+                font-size: 20px;
+            }
+            .forgotAndRemember {
+                p {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

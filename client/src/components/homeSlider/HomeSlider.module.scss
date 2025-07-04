@@ -1,0 +1,220 @@
+@import "../../styles/variables.scss";
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: $center;
+  transition: background-image 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.slide {
+  width: 100%;
+  display: flex;
+  align-items: $center;
+  justify-content: $center;
+  height: 100%;
+  color: $white;
+  flex-wrap: wrap;
+}
+.slides {
+  position: absolute;
+  width: 100%;
+}
+
+.arrows {
+  width: 436px;
+  display: flex;
+  align-items: $center;
+  position: relative;
+}
+
+.slideDiv {
+  position: relative;
+  width: 100%;
+  max-width: 1780px;
+  display: flex;
+  align-items: $center;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.prev,
+.next {
+  position: absolute;
+  cursor: $cursor;
+  border: 2px solid #f5ebe9;
+  width: 47px;
+  padding: 16px 0;
+  display: flex;
+  justify-content: $center;
+  transition: 0.5s ease;
+  background: transparent;
+
+  .arrow {
+    fill: $white;
+    transition: fill 0.5s ease;
+  }
+
+  &:hover .arrow {
+    fill: #0350b9;
+  }
+
+  &:hover {
+    border: 2px solid $white;
+    background-color: $white;
+  }
+}
+
+.prev {
+  margin-left: 0;
+}
+
+.next {
+  margin-left: 100px;
+}
+
+.line {
+  background: #f5ebe9;
+  width: 100%;
+  max-width: 234px;
+  height: 2px;
+}
+
+.content {
+  p {
+    font-family: var(--font5);
+    font-weight: 400;
+    font-size: clamp(24px, 5vw, 100px);
+    line-height: 112%;
+    letter-spacing: 0.21em;
+    text-align: $center;
+    color: $white;
+    max-width: 982px;
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+.arrowParentDiv {
+  display: flex;
+  align-items: $center;
+  h2 {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: clamp(16px, 3vw, 24px);
+    color: $white;
+    padding-left: 50px;
+  }
+}
+
+.arrowAndDiscover {
+  width: 100%;
+  display: flex;
+  align-items: $center;
+  justify-content: space-between;
+}
+
+.discover {
+  padding: 0 10px;
+}
+.transitioning {
+  transition: background-image 1s ease-in-out;
+}
+@media only screen and (min-width: 2200px) {
+  .slider {
+    justify-content: start;
+    row-gap: 250px;
+  }
+}
+@media only screen and (max-width: 1431px) {
+  .slideDiv {
+    justify-content: $center;
+  }
+}
+@media only screen and (max-width: 1274px) {
+  .arrows {
+    width: 200px;
+  }
+  .line {
+    width: 100px;
+  }
+  .slideDiv {
+    justify-content: start;
+  }
+}
+@media only screen and (max-width: 1079px) {
+  .arrowParentDiv {
+    h2 {
+      display: none;
+    }
+    .line {
+      display: none;
+    }
+  }
+  .arrows {
+    width: 100px;
+  }
+}
+@media only screen and (max-width: 906px) {
+  .arrowAndDiscover {
+    flex-direction: column;
+    row-gap: 55px;
+  }
+  .slideDiv {
+    justify-content: $center;
+  }
+  .arrows {
+    width: 200px;
+  }
+  .content {
+    p {
+      transform: translateY(-30px);
+    }
+  }
+}
+@media only screen and (max-width: 618px) {
+  .arrows {
+    width: 150px;
+  }
+  .arrowAndDiscover {
+    row-gap: 35px;
+  }
+  .content p {
+    transform: translateY(-30px);
+  }
+}
+@media only screen and (max-width: 366px) {
+  .content p {
+    font-size: 16px;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width: 896px) and (max-height: 414px) {
+  .slider {
+    height: 115vh;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width: 882px) and (max-height: 344px) {
+  .slider {
+    height: 145vh;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width: 740px) and (max-height: 360px) {
+  .slider {
+    height: 135vh;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width: 667px) and (max-height: 375px) {
+  .slider {
+    height: 125vh;
+  }
+}
+@media only screen and (orientation: landscape) and (max-width: 584px) and (max-height: 320px) {
+  .slider {
+    height: 200vh;
+  }
+}

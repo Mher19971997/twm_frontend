@@ -1,0 +1,47 @@
+.videoContainer {
+  object-fit: contain;
+  position: relative;
+  max-Width: 960px;
+  margin: auto; 
+  video {
+    width: 100%;
+    height: auto; 
+    display: block; 
+    background: #000 
+  }
+  .playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 10;
+    .playIcon {
+      backdrop-filter: blur(20px) ;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      width: 70px;
+      height: 70px;
+      position: relative;
+      img {
+        position: absolute;
+        left: 30%;
+        top: 28%;
+        user-select: none;
+      }
+      svg {
+        position: absolute;
+        left: 20%;
+        top: 20%;
+      }
+    }
+  }
+  
+  // .playIcon {
+  //   font-size: 3rem;
+  // }
+  
+  // .pauseIcon {
+  //   font-size: 3rem;
+  // }
+}

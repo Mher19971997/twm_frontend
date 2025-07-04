@@ -1,0 +1,337 @@
+.contentCenterAccount {
+    .aboutProfile {
+        .zoomModal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            .closeZoomButton {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 30px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 1100;
+              }
+              
+              .closeZoomButton:hover {
+                color: #f00;
+              }
+          }
+          
+          .zoomModal img {
+            width: 90%;
+            height: 400px;
+            border-radius: 10px;
+            object-fit: contain;
+            image-rendering: crisp-edges;
+            cursor: zoom-in;
+          }
+          .backgroundProfile {
+            cursor: zoom-in;
+          }
+        .profileImgAndInfo {
+            transform: translate(70px,-50px);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            img {
+                cursor: zoom-in;
+            }
+            .infoProfile {
+                display: flex;
+                flex-direction: column;
+                row-gap: 5px;
+                padding-top: 20px;
+                transform: translateY(30px);
+                h2 {
+                    font-family: var(--font-family);
+                    font-weight: 600;
+                    font-size: 32px;
+                    letter-spacing: 0.04em;
+                    color: #000;
+                }
+                p {
+                    font-family: var(--font-family);
+                    font-weight: 300;
+                    font-size: 16px;
+                    letter-spacing: 0.04em;
+                    color: rgba(0, 0, 0, 0.54);
+                }
+            }
+        }
+    }
+    .posts {
+        padding-left: 70px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 50px;
+    }
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+  
+  .modalContent {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 400px;
+    img {
+      border-radius: 8px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  
+  .closeModalButton,
+  .prevButton,
+  .nextButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .closeModalButton {
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    transform: none;
+  }
+  
+  .prevButton {
+    left: 10px;
+  }
+  
+  .nextButton {
+    right: 10px;
+  }
+  
+  .closeModalButton:hover,
+  .prevButton:hover,
+  .nextButton:hover {
+    background: rgba(0, 0, 0, 0.9);
+  }
+@media only screen and (max-width: 1712px) {
+    .contentCenterAccount {
+          .video {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+           
+            video {
+             width: 100%;
+             height: auto;
+             object-fit: cover;
+           }
+        }
+        .aboutProfile {
+            width: 100%;
+            .backgroundProfile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                img {
+                    width: 690px;
+                    height: auto;
+    
+                }
+            }
+        }
+        .posts {
+            padding-left: 0px;
+            align-items: center;
+        }
+
+    }
+}
+@media only screen and (max-width: 1534px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            .backgroundProfile {
+                img {
+                    width: 97%;
+                    height: auto;
+                }
+            }
+            .profileImgAndInfo {
+                transform: translate(40px,-30px);
+                padding-bottom: 20px;
+                img {
+                    width: 80px;
+                    height: auto;
+                }
+                .infoProfile {
+                    padding-top: 0;
+                    transform: translateY(30px);
+                    h2 {
+                        font-size: 26px;
+                    }
+                    p {
+                        font-size: 13px;
+                    }
+                }
+            }
+            
+        }
+        .posts {
+            padding-left: 0px;
+            align-items: center;
+        }
+    }
+}
+@media only screen and (max-width: 1200px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            max-width: 100%;
+            width: 100%;
+            padding-bottom: 20px;
+            .backgroundProfile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                img {
+                    width: 900px;
+                    height: auto;
+                    object-fit: cover;
+    
+                }
+            }
+        }
+        .posts {
+            padding-left: 0px;
+            align-items: center;
+        }
+
+    }
+}
+@media only screen and (max-width: 993px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            .backgroundProfile {
+                img {
+                    width: 800px;
+                }
+            }
+        }
+
+    }
+}
+@media only screen and (max-width: 901px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            .backgroundProfile {
+                img {
+                    width: 700px;
+                }
+            }
+            .profileImgAndInfo {
+                width: 80%;
+            }
+        }
+
+    }
+}
+@media only screen and (max-width: 772px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            .backgroundProfile {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}
+@media only screen and (max-width: 412px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            width: 100%;
+            .backgroundProfile {
+                transform: translate(3px,-45px);
+                img {
+                    width:100%;
+                    height: auto;
+                }
+            }
+            .profileImgAndInfo {
+                transform: translate(10px,-80px);
+                .infoProfile {
+                    transform: translateY(40px);
+                }
+            }
+    }
+}
+}
+@media only screen and (max-width: 372px) {
+    .contentCenterAccount {
+        .aboutProfile {
+            width: 100%;
+            .backgroundProfile {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                transform: translate(3px,-45px);
+                img {
+                    width:100%;
+                    height: auto;
+                }
+            }
+            .profileImgAndInfo {
+                transform: translate(20px,-70px);
+                img {
+                    width: 60px;
+                    height: auto;
+                }
+                .infoProfile {
+                    transform: translateY(30px);
+                    h2 {
+                        font-size: 20px;
+                    }
+                    p {
+                        font-size: 10px;
+                        width: 95%;
+                    }
+                }
+            }
+    }
+}
+}

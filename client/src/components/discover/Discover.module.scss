@@ -1,0 +1,97 @@
+.discoverBlock {
+  box-shadow: 0 10px 30px 5px rgba(219, 200, 197, 0.2);
+  background: #fff;
+  width: 1185px;
+  padding: 45px;
+  form {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    justify-content: space-between;
+    align-items: end;
+
+    h2 {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 16px;
+      color: #a79997;
+      padding-bottom: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 1915px) {
+    width: 935px;
+    padding: 45px 20px;
+  }
+
+  @media only screen and (max-width: 1657px) {
+    form {
+      grid-template-columns: auto auto;
+      gap: 30px;
+    }
+
+    width: 100%;
+    padding: 45px;
+  }
+
+  @media only screen and (max-width: 1431px) {
+    form {
+      row-gap: 5px;
+    }
+    
+    width: 100%;;
+    right: 0;
+  }
+
+  @media only screen and (max-width: 1257px) {
+    form {
+      gap: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 1106px) {
+    form {
+      row-gap: 30px;
+    }
+    padding: 15px 45px;
+  }
+  @media only screen and (max-width: 973px) {
+    .formDiscover {
+      grid-template-columns: auto auto;
+      row-gap: 5px;
+    }
+  }
+
+  @media only screen and (max-width: 618px) {
+    .formDiscover {
+      grid-template-columns: auto;
+      width: 300px;
+      justify-content: center;
+    }
+    
+  }
+  @media only screen and (max-width: 414px) {
+    width: 350px;
+    padding: 15px;
+    .formDiscover {
+      width: 300px;
+    }
+  }
+  @media only screen and (max-width: 381px) {
+    width: 330px;
+    padding: 15px;
+  }
+  @media only screen and (max-width: 348px) {
+    width: 300px;
+    padding: 15px 25px;
+    .formDiscover {
+      width: 250px;
+    }
+  }
+  @media only screen and (max-width: 334px) {
+    width: 280px;
+    padding: 15px;
+    .formDiscover {
+      width: 250px;
+    }
+  }
+}

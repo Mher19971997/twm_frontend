@@ -1,0 +1,97 @@
+.header {
+    box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.06);
+    background: #fff;
+    width: 100%;
+    padding: 30px 0 29px 0;
+    z-index: 30;
+    img {
+        user-select: none;
+    }
+    button {
+        outline: none;
+    }
+    .contentHeader {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+            .hamburgerMenu {
+                display: none;
+                @media only screen and (max-width: 1200px) {
+                    display: block;
+                }
+            }
+            .leftHeader {
+                display: flex;
+                align-items: center;
+                gap: 70px;
+                .secondBlockLeftHeader {
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    
+                    @media only screen and (max-width: 776px) {
+                        display: none;
+                    }
+                    input {
+                        border: 1px solid #a3a3a3;
+                        border-radius: 20px;
+                        max-width: 300px;
+                        width: 100%;
+                        background: #eaeaea;
+                        padding: 11px 115px 12px 15px;
+                        outline: none;
+                        color: #000;
+                        @media only screen and (max-width: 836px) {
+                            padding: 11px 15px 12px 15px;
+                        }
+                        &::-webkit-search-cancel-button  {
+                            display: none;
+                        }
+                        &::placeholder {
+                            font-family: var(--font-family);
+                            font-weight: 400;
+                            font-size: 14px;
+                            letter-spacing: 0.12em;
+                            color: rgba(0, 0, 0, 0.37);
+                        }
+                    }
+                    .icons {
+                        display: flex;
+                        align-items: center;
+                        gap: 20px;
+                        .backgroundIcon {
+                            border-radius: 25px;
+                            width: 40px;
+                            height: 40px;
+                            background: rgba(169, 169, 169, 0.33);
+                            cursor: pointer;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            transition: background 0.3s ease;
+                            .icon {
+                                fill: #A9A9A9;
+                                transition: fill 0.3s ease;
+                              }
+                              
+                              &:hover {
+                                background: rgba(0, 85, 255, 0.1);
+                              
+                                .icon {
+                                  fill: url(#defaultGradient);
+                                }
+                              }
+                    }
+                }
+            }
+        }
+        .rightHeader {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            @media only screen and (max-width: 1200px) {
+                display: none;
+            }
+        }
+    }
+}
