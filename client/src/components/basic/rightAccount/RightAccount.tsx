@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { useState, useEffect } from "react";
 import styles from "./RightAccount.module.scss";
 import User from "../../../../public/assets/png/firstUserRequest.png";
@@ -189,47 +188,47 @@ export default function RightAccount({
   const buttons: { href?: string; text: string; className: string; onClick: () => void }[] = [
     ...(showAccountOptions
       ? [
-        {
-          className: styles.goToAccountButton,
-          onClick: handleGoToUserAccount,
-          href: "/profile",
-          text: `Go to ${selectedUser}'s Account`,
-        },
-        {
-          className: styles.sendMessageButton,
-          onClick: () => setShowAccountOptions(false),
-          text: `Send a Message`,
-        },
-      ]
+          {
+            className: styles.goToAccountButton,
+            onClick: handleGoToUserAccount,
+            href: "/profile",
+            text: `Go to ${selectedUser}'s Account`,
+          },
+          {
+            className: styles.sendMessageButton,
+            onClick: () => setShowAccountOptions(false),
+            text: `Send a Message`,
+          },
+        ]
       : [
-        {
-          className: styles.postButton,
-          onClick: handlePostMessage,
-          text: "Post",
-        },
-        ...(selectedItemType === "user" && selectedUser
-          ? [
-            {
-              className: styles.blockButton,
-              onClick: () => blockUser(selectedUser!),
-              text: "Block",
-            },
-          ]
-          : []),
-        ...(selectedItemType === "group" || selectedItemType === "page"
-          ? [
-            {
-              className: styles.leaveButton,
-              onClick: () => {
-                if (selectedItemType) {
-                  leaveGroupOrPage(selectedUser!, selectedItemType);
-                }
-              },
-              text: `Leave`,
-            },
-          ]
-          : []),
-      ]),
+          {
+            className: styles.postButton,
+            onClick: handlePostMessage,
+            text: "Post",
+          },
+          ...(selectedItemType === "user" && selectedUser
+            ? [
+                {
+                  className: styles.blockButton,
+                  onClick: () => blockUser(selectedUser!),
+                  text: "Block",
+                },
+              ]
+            : []),
+          ...(selectedItemType === "group" || selectedItemType === "page"
+            ? [
+                {
+                  className: styles.leaveButton,
+                  onClick: () => {
+                    if (selectedItemType) {
+                      leaveGroupOrPage(selectedUser!, selectedItemType);
+                    }
+                  },
+                  text: `Leave`,
+                },
+              ]
+            : []),
+        ]),
   ];
 
   const handleModalClick = (e: React.MouseEvent) => {
@@ -278,8 +277,8 @@ export default function RightAccount({
                 {showAccountOptions
                   ? `Choose an action for ${selectedUser}`
                   : selectedItemType === "user"
-                    ? `Message to ${selectedUser}`
-                    : `Message to ${selectedUser}`}
+                  ? `Message to ${selectedUser}`
+                  : `Message to ${selectedUser}`}
               </h2>
 
             </div>
