@@ -1,6 +1,8 @@
 "use client";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { parseCookies } from "nookies";
 import { LinksHead } from "../messages/page";
 import Footer from "@/components/footer/Footer";
 import { StarIcon } from "../../../public/assets/svg/StarIcon";
@@ -15,6 +17,8 @@ import { GlobeIcon } from "../../../public/assets/svg/GlobeIcon";
 import styles from "./page.module.css";
 
 const ProfilePage = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
   const [hoveredTour, setHoveredTour] = useState(null);
   const [showFeedbackForm, setShowFeedbackForm] = useState(false);
   const [newFeedback, setNewFeedback] = useState({
@@ -45,6 +49,43 @@ const ProfilePage = () => {
       date: "2024 Մարտ",
     },
   ]);
+
+  useEffect(() => {
+    const checkAuth = () => {
+      try {
+        const cookies = parseCookies();
+        const authToken = cookies.authToken;
+        const refreshToken = cookies.refreshToken;
+        const userType = cookies.userType;
+
+        if (!authToken || !refreshToken || !userType) {
+          router.push('/');
+          return;
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        router.push('/');
+      }
+    };
+
+    checkAuth();
+  }, [router]);
+
+  if (isLoading) {
+    return (
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        fontSize: '18px',
+        color: '#6c757d'
+      }}>
+        Loading...
+      </div>
+    );
+  }
 
   // Sample data - in real app this would come from props or API
   const user = {
@@ -213,9 +254,8 @@ const ProfilePage = () => {
   const renderTourCard = (tour: any, type: any) => (
     <div
       key={tour.id}
-      className={`${styles.tourCard} ${
-        hoveredTour === tour.id ? styles.tourCardHover : ""
-      }`}
+      className={`${styles.tourCard} ${hoveredTour === tour.id ? styles.tourCardHover : ""
+        }`}
       onMouseEnter={() => setHoveredTour(tour.id)}
       onMouseLeave={() => setHoveredTour(null)}
     >
@@ -229,9 +269,8 @@ const ProfilePage = () => {
         <img
           src={tour.image}
           alt={tour.title}
-          className={`${styles.tourImage} ${
-            hoveredTour === tour.id ? styles.tourImageHover : ""
-          }`}
+          className={`${styles.tourImage} ${hoveredTour === tour.id ? styles.tourImageHover : ""
+            }`}
         />
       </div>
       <div className={styles.tourContent}>

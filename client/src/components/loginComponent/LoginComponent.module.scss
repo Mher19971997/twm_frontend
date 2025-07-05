@@ -5,7 +5,7 @@
         display: flex;
         flex-direction: column;
         float: right;
-        // margin-bottom: 20px;
+        
         .errorMessage {
             font-family: var(--font-family);
             color: red;
@@ -13,6 +13,71 @@
             margin-top: 10px;
             text-align: center;
         }
+
+        .successMessage {
+            font-family: var(--font-family);
+            color: green;
+            font-size: 18px;
+            margin-top: 10px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        // Account type selection
+        .selectWrapper {
+            margin-bottom: 20px;
+            
+            label {
+                font-family: var(--font-family);
+                font-weight: 600;
+                font-size: 16px;
+                letter-spacing: 0.05em;
+                color: #2c2c2c;
+                display: block;
+                margin-bottom: 8px;
+            }
+
+            .loginTypeSelect {
+                width: 100%;
+                padding: 15px;
+                border: 1px solid #a6a6a6;
+                border-radius: 7px;
+                font-family: var(--font-family);
+                font-weight: 600;
+                font-size: 15px;
+                color: #2c2c2c;
+                background: white;
+                cursor: pointer;
+                outline: none;
+
+                &:focus {
+                    border-color: #0575e6;
+                }
+            }
+        }
+
+        // Step info
+        .stepInfo {
+            margin-bottom: 20px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 7px;
+            border-left: 4px solid #0575e6;
+
+            p {
+                font-family: var(--font-family);
+                font-weight: 400;
+                font-size: 14px;
+                color: #2c2c2c;
+                margin: 0;
+
+                strong {
+                    font-weight: 700;
+                    color: #0575e6;
+                }
+            }
+        }
+        
         button {
             border: 1px solid #2c2c2c;
             border-radius: 7px;
@@ -29,20 +94,34 @@
             font-size: 20px;
             letter-spacing: 0.05em;
             color: #fff;
-            margin-top:26px;
+            margin-top: 26px;
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+            &:hover:not(:disabled) {
+                background: #1a1a1a;
+                border-color: #1a1a1a;
+            }
         }
+
         h2 {
-            width: 218px;
+            width: 100%;
             font-family: var(--font-family);
             font-weight: 900;
             font-size: 32px;
             line-height: 150%;
             letter-spacing: 0.05em;
             color: #000;
+            margin-bottom: 20px;
         }
         
         .inputsLogin {
             position: relative;
+            margin-bottom: 15px;
+
             input {
                 outline: none;
                 color: #000;
@@ -50,7 +129,11 @@
                 padding: 18px 0 18px 50px;
                 border: 1px solid #a6a6a6;
                 border-radius: 7px;
-                margin-top: 25px;
+                margin-top: 15px;
+                font-family: var(--font-family);
+                font-size: 15px;
+                box-sizing: border-box;
+
                 &::placeholder {
                     font-family: var(--font-family);
                     font-weight: 900;
@@ -59,30 +142,103 @@
                     letter-spacing: 0.05em;
                     color: rgba(180, 180, 180, 0.69);
                 }
+
                 &.error {
                     border: 1px solid red;
                 }
+
+                &:focus {
+                    border-color: #0575e6;
+                }
             }
-            .emailIcon {
+
+            // Dynamic positioning for icons based on input count
+            > div:nth-child(1) .emailIcon {
                 position: absolute;
-                top: 40px;
+                top: 30px;
                 left: 15px;
+                z-index: 2;
             }
-            .passwordIcon {
+
+            > div:nth-child(2) .emailIcon {
                 position: absolute;
-                top: 115px;
+                top: 30px;
                 left: 15px;
+                z-index: 2;
+            }
+
+            // Password container styles
+            .passwordContainer {
+                position: relative;
+
+                .passwordIcon {
+                    position: absolute;
+                    top: 30px;
+                    left: 15px;
+                    z-index: 2;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .eyeIcon {
+                    position: absolute;
+                    top: 60%;
+                    right: 15px;
+                    transform: translateY(-50%);
+                    z-index: 2;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 5px;
+                    border-radius: 4px;
+                    color: #898484;
+                    transition: all 0.2s ease;
+
+                    &:hover {
+                        color: #0575e6;
+                        background-color: rgba(5, 117, 230, 0.1);
+                    }
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                input {
+                    padding-right: 50px; // Add space for eye icon
+                }
+            }
+
+            // Helper text for login options
+            > div[style*="text-align: center"] {
+                font-style: italic;
+                background: #f0f8ff;
+                padding: 8px;
+                border-radius: 5px;
+                margin: 10px 0;
             }
         }
+
         .forgotAndRemember {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding-top: 15px;
+
             .rememberMe {
                 display: flex;
                 align-items: center;
                 gap: 10px;
+
+                input[type="checkbox"] {
+                    width: 16px;
+                    height: 16px;
+                    cursor: pointer;
+                }
+
                 label {
                     font-family: var(--font-family);
                     font-weight: 300;
@@ -90,8 +246,10 @@
                     letter-spacing: 0.05em;
                     color: #898484;
                     user-select: none;
+                    cursor: pointer;
                 }
             }
+
             p {
                 font-family: var(--font-family);
                 font-weight: 300;
@@ -99,16 +257,25 @@
                 letter-spacing: 0.05em;
                 color: #000;
                 cursor: pointer;
+                margin: 0;
+
+                &:hover {
+                    color: #0575e6;
+                }
             }
         }
+
         .registerNewAccount {
             padding-top: 15px;
+
             p {
                 font-family: var(--font-family);
                 font-weight: 600;
                 font-size: 16px;
                 letter-spacing: 0.05em;
                 color: #a6a6a6;
+                margin: 0;
+
                 span {
                     font-weight: 700;
                     text-decoration-skip-ink: none;
@@ -120,12 +287,18 @@
                     border-image: linear-gradient(180deg, #0575e6 0%, #031c7b 100%);
                     border-image-slice: 1;
                     cursor: pointer;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
                 }
             }
         }
     }
+
     .signInWithBrowsers {
         padding-top: 25px;
+
         p {
             font-family: var(--font-family);
             font-weight: 500;
@@ -133,38 +306,56 @@
             letter-spacing: 0.05em;
             color: #a6a6a6;
             text-align: center;
+            margin: 0 0 15px 0;
         }
+
         .facebook {
             background: #3b5999;
+            margin-bottom: 10px;
+
+            &:hover {
+                background: #2d4373;
+            }
         }
+
         .google {
             background: #0d66ff;
-            margin: 15px 0 10px 0;
+            margin-bottom: 10px;
+
+            &:hover {
+                background: #0a52cc;
+            }
         }
+
         a {
-            text-decoration: 0;
+            text-decoration: none;
             width: 100%;
             border-radius: 7px;
-            padding: 8px 0 8px 15px;
+            padding: 12px 15px;
             display: flex;
             align-items: center;
             gap: 34px;
+            transition: background-color 0.3s ease;
+
             p {
                 font-family: var(--font-family);
                 font-weight: 900;
                 font-size: 16px;
-                line-height: 300%;
+                line-height: 1;
                 letter-spacing: 0.05em;
                 color: #fff;
+                margin: 0;
             }
         }
     }
 }
+
 @media only screen and (max-width: 1680px) {
     .contentLoginComponent {
         padding: 77px 0px 0 0;
     }
 }
+
 @media only screen and (max-width: 1526px) {
     .contentLoginComponent {
         padding: 27px 0px 0 0;
@@ -173,36 +364,117 @@
         }
     }
 }
+
 @media only screen and (max-width: 994px) {
     .contentLoginComponent {
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding: 27px 20px 0 20px;
+
         form {
             float: none;
+            width: 100%;
+            max-width: 400px;
+
             h2 {
-                width: 100%;
                 font-size: 26px;
                 text-align: center;
+            }
+
+            .selectWrapper .loginTypeSelect {
+                padding: 12px;
+            }
+
+            .inputsLogin input {
+                padding: 15px 0 15px 45px;
+            }
+
+            .inputsLogin .passwordContainer input {
+                padding: 15px 45px 15px 45px;
             }
         }
     }
 }
+
 @media only screen and (max-width: 600px) {
     .contentLoginComponent {
-        padding: 27px 0px 0 0;
+        padding: 27px 15px 0 15px;
+
+        form {
+            .selectWrapper .loginTypeSelect {
+                font-size: 14px;
+            }
+
+            .stepInfo p {
+                font-size: 13px;
+            }
+
+            .inputsLogin input {
+                font-size: 14px;
+                padding: 12px 0 12px 40px;
+
+                &::placeholder {
+                    font-size: 14px;
+                }
+            }
+
+            .inputsLogin .passwordContainer {
+                input {
+                    padding: 12px 40px 12px 40px;
+                }
+
+                .eyeIcon {
+                    right: 12px;
+                    
+                    svg {
+                        width: 18px;
+                        height: 18px;
+                    }
+                }
+            }
+        }
     }
 }
+
 @media only screen and (max-width: 392px) {
     .contentLoginComponent {
         form {
-            width: 100%;
             h2 {
                 font-size: 20px;
             }
+
             .forgotAndRemember {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+
                 p {
                     font-size: 13px;
+                }
+
+                .rememberMe label {
+                    font-size: 13px;
+                }
+            }
+
+            .signInWithBrowsers a {
+                gap: 20px;
+                padding: 10px 12px;
+
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .inputsLogin .passwordContainer {
+                .eyeIcon {
+                    right: 10px;
+                    
+                    svg {
+                        width: 16px;
+                        height: 16px;
+                    }
                 }
             }
         }

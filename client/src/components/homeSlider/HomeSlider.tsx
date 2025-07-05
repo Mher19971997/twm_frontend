@@ -79,7 +79,7 @@ export default function HomeSlider() {
                 className={styles.prev}
                 onClick={() => changeSlide("prev")}
                 aria-label="Previous slide"
-                disabled={isTransitioning.current} 
+                disabled={isTransitioning.current}
               >
                 <ArrowLeftHome className={styles.arrow} />
               </button>
@@ -87,7 +87,7 @@ export default function HomeSlider() {
                 className={styles.next}
                 onClick={() => changeSlide("next")}
                 aria-label="Next slide"
-                disabled={isTransitioning.current} 
+                disabled={isTransitioning.current}
               >
                 <ArrowRightHome className={styles.arrow} />
               </button>

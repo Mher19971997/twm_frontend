@@ -36,7 +36,7 @@ export type UserType = {
   telegram?: string,
   whatsapp?: string,
   classes?: string[],
-  subjectUuId?: string 
+  subjectUuId?: string
 }
 
 export type GetAdminsResponseType = {
@@ -439,3 +439,61 @@ export interface ISelectedUser {
   roomUuid: string;
   email: string
 }
+
+
+export interface RegisterInput {
+  email?: string;
+  phone?: string;
+  nickname?: string;
+  name?: string;
+  surname?: string;
+  birthDate?: string;
+  gender?: string;
+}
+
+export interface RegisterIndividualInput {
+  name?: string;
+  inn?: string;
+  email?: string;
+  phone?: string;
+  password?: string;
+}
+
+export interface RegisterOrganisationInput {
+  location_latitude?: string;
+  phone?: string;
+  location_longitude?: string;
+  name?: string;
+  email?: string;
+  inn?: string;
+  password?: string;
+}
+
+export type RegistrationFormData = RegisterInput | RegisterIndividualInput | RegisterOrganisationInput;
+
+export type RegistrationType = "auth_client" | "auth_individual" | "auth_organisation";
+
+
+
+export interface LoginInput {
+  email?: string;
+  nickname?: string;
+  password: string;
+}
+
+export interface LoginIndividualInput {
+  email?: string;
+  phone?: string;
+  password: string;
+}
+
+export interface LoginOrganisationInput {
+  email?: string;
+  phone?: string;
+  password: string;
+}
+
+// Union type for all login data
+export type LoginFormData = LoginInput | LoginIndividualInput | LoginOrganisationInput;
+
+export type LoginType = "auth_client" | "auth_individual" | "auth_organisation";

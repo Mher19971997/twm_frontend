@@ -3,12 +3,11 @@
 
 import { createSlice } from '@reduxjs/toolkit'
 import {
+    checkContact,
     loginUser,
-    passwordRecovery,
-    passwordRecoveryCode,
-    passwordRecoveryResetPassword,
     refreshToken,
     registerUser,
+    verifyContact,
 } from '../../actions/authAction'
 
 import nookies, { destroyCookie } from 'nookies'
@@ -129,38 +128,26 @@ export const authSlice = createSlice({
             state.isLoading = false
             state.error = action.payload
         })
-        builder.addCase(passwordRecovery.pending, (state) => {
+        builder.addCase(checkContact.pending, (state) => {
             state.isLoading = true
         })
-        builder.addCase(passwordRecovery.fulfilled, (state, action) => {
+        builder.addCase(checkContact.fulfilled, (state, action) => {
             state.isLoading = false
             state.error = ''
         })
-        builder.addCase(passwordRecovery.rejected, (state, action) => {
+        builder.addCase(checkContact.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
         })
-        builder.addCase(passwordRecoveryCode.pending, (state) => {
+        builder.addCase(verifyContact.pending, (state) => {
             state.isLoading = true
             state.error = ''
         })
-        builder.addCase(passwordRecoveryCode.fulfilled, (state, action) => {
+        builder.addCase(verifyContact.fulfilled, (state, action) => {
             state.isLoading = false
             state.error = ''
         })
-        builder.addCase(passwordRecoveryCode.rejected, (state, action) => {
-            state.isLoading = false
-            state.error = action.payload
-        })
-        builder.addCase(passwordRecoveryResetPassword.pending, (state) => {
-            state.isLoading = true
-            state.error = ''
-        })
-        builder.addCase(passwordRecoveryResetPassword.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.error = ''
-        })
-        builder.addCase(passwordRecoveryResetPassword.rejected, (state, action) => {
+        builder.addCase(verifyContact.rejected, (state, action) => {
             state.isLoading = false
             state.error = action.payload
         })
