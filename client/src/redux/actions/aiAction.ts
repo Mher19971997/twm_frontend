@@ -8,7 +8,7 @@ export const speakWithAi = createAsyncThunk(
   async ({ text, token }: { text: string; token: string }, thunkAPI) => {
     try {
       const response = await instance.post(
-        "api/v1/open_ai/ask",
+        "open_ai/ask",
         { text },
         {
           headers: {

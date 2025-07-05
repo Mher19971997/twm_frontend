@@ -37,7 +37,7 @@ export const createTour = createAsyncThunk(
 
     try {
       const response = await instance.post(
-        "api/v1/tour_organisation",
+        "tour_organisation",
         data,
         {
           headers: {
