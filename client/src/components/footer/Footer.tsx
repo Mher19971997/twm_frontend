@@ -39,28 +39,28 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
-                        {linksFooter.map((item: any, index: number) => {
-                            return (
-                                <div key={index} className={styles.linksItem}>
-                                    <h2>{item.title}</h2>
-                                    <div className={styles.link}>
-                                        {item.links.map((link: string, linkIndex: number) => (
-                                            <a href="#" key={linkIndex}>{link}</a>
-                                        ))}
-                                    </div>
+                    {linksFooter.map((item: any, index: number) => {
+                        return (
+                            <div key={index} className={styles.linksItem}>
+                                <h2>{item.title}</h2>
+                                <div className={styles.link}>
+                                    {item.links.map((link: string, linkIndex: number) => (
+                                        <a href="#" key={linkIndex}>{link}</a>
+                                    ))}
                                 </div>
-                            );
-                        })}
-                        <div className={styles.subscribe}>
-                            <h2>Newsletter</h2>
-                            <form>
-                                <input type="email" placeholder="Your Email" required/>
-                                <button>Subscribe Now</button>
-                            </form>
-                        </div>
+                            </div>
+                        );
+                    })}
+                    <div className={styles.subscribe}>
+                        <h2>Newsletter</h2>
+                        <form>
+                            <input type="email" placeholder="Your Email" required />
+                            <button>Subscribe Now</button>
+                        </form>
+                    </div>
                 </div>
                 <div className={styles.designBy}>
-                    <p>Copyright @2020 Ravel. Designed By <a href="#">www.kingcode.am</a></p>
+                    <p>Copyright @2020 Ravel. Designed By <a href="#">TWM team</a></p>
                 </div>
             </Container>
         </footer>

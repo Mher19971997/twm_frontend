@@ -4,17 +4,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { instance } from '../api/api'
 import { setCookie } from 'nookies'
 import axios from 'axios'
-import { LoginResponseType, UserType } from './types'
+import { LoginFormData, LoginType, RegistrationFormData, RegistrationType } from './types'
 
 export const loginUser = createAsyncThunk(
-  'auth/login',
-  async ({ email, password }: { email: string; password: string }, thunkAPI) => {
+  'auth/loginUser',
+  async (
+    { userData, userType }: { userData: LoginFormData; userType: LoginType },
+    thunkAPI
+  ) => {
     try {
-      const response = await instance.post<LoginResponseType>('auth/login-non-admin', {
-        email,
-        password,
-      })
-
+      const endpoint = `${userType}/login`;
+      const response = await instance.post(endpoint, userData);
       response.data.access_token &&
         setCookie(null, 'authToken', response.data.access_token, {
           maxAge: 30 * 24 * 60 * 60,
@@ -27,47 +27,47 @@ export const loginUser = createAsyncThunk(
           path: '/',
         })
 
+      setCookie(null, 'userType', userType, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      })
 
 
       return response.data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data.message)
+      console.error('Login error:', error?.response?.data);
+      return thunkAPI.rejectWithValue(
+        error?.response?.data?.message || "Login failed"
+      );
     }
-  },
-)
-
+  }
+);
 export const registerUser = createAsyncThunk(
-  'auth/register',
-  async ({
-    email,
-    password,
-    phone,
-    lastName,
-    firstName,
-    timezone,
-    roles,
-    classUuid,
-    classes = [],
-    subjectUuId = "",
-    telegram,
-    whatsapp
-  }:
-    UserType,
-    thunkAPI) => {
+  'auth/registerUser',
+  async (
+    { userData, userType }: { userData: RegistrationFormData; userType: RegistrationType },
+    thunkAPI
+  ) => {
     try {
-      const response = await instance.post<UserType>('auth/register', {
-        email,
-        roles,
-        phone,
-        password,
-        timezone,
-        lastName,
-        firstName,
-        classUuid,
-        telegram,
-        whatsapp,
-        subjectUuId,
-        classes
+      const endpoint = `${userType}/register`;
+      const response = await instance.post(endpoint, userData);
+      return response.data;
+    } catch (error: any) {
+      console.error('Registration error:', error?.response?.data);
+      return thunkAPI.rejectWithValue(
+        error?.response?.data?.message || "Registration failed"
+      );
+    }
+  }
+);
+
+
+export const checkContact = createAsyncThunk(
+  'auth/checkContact',
+  async ({ email, type }: { email: string; type: string }, thunkAPI) => {
+    try {
+      const response = await instance.patch(`${type}/checkContact`, {
+        email
       })
       return response.data
     } catch (error: any) {
@@ -76,96 +76,42 @@ export const registerUser = createAsyncThunk(
   },
 )
 
-export const passwordRecovery = createAsyncThunk(
-  'auth/passwordRecovery',
-  async (
-    {
-      email,
-    }: {
-      email: string
-    },
-    thunkAPI,
-  ) => {
+export const verifyContact = createAsyncThunk(
+  'auth/verifyContact',
+  async ({ email, code, type }: { email?: string; code: string; type: string }, thunkAPI) => {
     try {
-      const response = await instance.patch('auth/forgotPassword', {
-        email,
-        type: 'forgot-password'
-      })
-
-      return response.data
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data.message)
-    }
-  },
-)
-
-export const passwordRecoveryCode = createAsyncThunk(
-  'auth/passwordRecoveryCode',
-  async (
-    {
-      email,
-      code,
-    }: {
-      email: string
-      code: string
-    },
-    thunkAPI,
-  ) => {
-    try {
-      const response = await instance.patch('auth/verifyContact', {
-        email,
-        "type": "forgot-password",
+      const response = await instance.patch(`${type}/verifyContact`, {
         code,
-      })
-
-      return response.data
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data.message)
-    }
-  },
-)
-
-export const passwordRecoveryResetPassword = createAsyncThunk(
-  'auth/passwordRecoveryResetPassword',
-  async (
-    {
-      email,
-      code,
-      password,
-    }: {
-      email: string
-      code: string
-      password: string
-    },
-    thunkAPI,
-  ) => {
-    try {
-      const response = await instance.patch('auth/newPassword', {
         email,
-        password,
-        type: 'forgot-password'
+        type:
+          type === 'auth_client'
+            ? 'verify-contact'
+            : type === 'auth_organisation'
+              ? 'verify-contact-organisation'
+              : type === 'auth_individual'
+                ? 'verify-contact-individual'
+                : '',
       })
-
       return response.data
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data.message)
     }
   },
 )
+
 
 export const refreshToken = createAsyncThunk(
   'auth/refresh',
-  async (
-    {
-      refreshToken,
-    }: {
-      refreshToken: string
-    },
-    thunkAPI,
-  ) => {
+  async ({
+    refreshToken,
+    type
+  }: {
+    refreshToken: string,
+    type: 'auth_client' | 'auth_individual' | 'auth_organisation'
+  }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'auth/refresh-tokens',
+      const response = await instance.post(
+        `${type}/refresh`,
         {
           refreshToken,
         },
@@ -173,13 +119,13 @@ export const refreshToken = createAsyncThunk(
       )
 
       response.data.access &&
-        setCookie(null, 'authToken', response.data.access, {
+        setCookie(null, 'authToken', response.data.access_token, {
           maxAge: 30 * 24 * 60 * 60,
           path: '/',
         })
 
       response.data.access &&
-        setCookie(null, 'refreshToken', response.data.refresh, {
+        setCookie(null, 'refreshToken', response.data.refresh_token, {
           maxAge: 30 * 24 * 60 * 60,
           path: '/',
         })
