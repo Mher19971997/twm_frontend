@@ -23,8 +23,8 @@ export default function HomeHeader () {
 
     const ulMenu: {text: string, href: string}[] = [
         {text: "Destination", href: "/"},
-        {text: "Offer", href: "/"},
-        {text: "Tour", href: "/"},
+        {text: "Offer", href: "/offer"},
+        {text: "Tour", href: "/tours"},
         {text: "Blog", href: "/"},
     ]
 

@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: #f4f6fb;
+  border-right: 2px solid #033497;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoText {
+  color: #033497;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.searchInput {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.newChatBtn {
+  background-color: #033497;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background 0.3s ease;
+}
+
+.newChatBtn:hover {
+  background-color: #021f80;
+}
+
+.chatList {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.chatItem {
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.chatItem:hover {
+  background-color: #e3eaff;
+}
+
+.chatWindow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+
+.chatContent {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.logoImage {
+  width: 200px;
+  max-width: 60%;
+}
+
+.userMessage {
+  align-self: flex-end;
+  background-color: #e2eaff;
+  padding: 10px 14px;
+  border-radius: 16px 16px 0 16px;
+  margin: 5px 0;
+  max-width: 60%;
+  color: #033497;
+}
+
+.aiMessage {
+  align-self: flex-start;
+  background-color: #f1f4ff;
+  padding: 10px 14px;
+  border-radius: 16px 16px 16px 0;
+  margin: 5px 0;
+  max-width: 60%;
+}
+
+.inputArea {
+  display: flex;
+  /* border-top: 2px solid #033497; */
+  padding: 12px;
+}
+
+.inputArea input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #033497;
+  border-radius: 8px 0 0 8px;
+  outline: none;
+}
+
+.inputArea button {
+  padding: 10px 16px;
+  background-color: #033497;
+  color: white;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  cursor: pointer;
+}
