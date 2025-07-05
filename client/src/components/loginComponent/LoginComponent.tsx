@@ -46,7 +46,6 @@ export default function LoginComponent({ onToggle }: AuthComponentProps) {
         });
 
         if (response.status === 200) {
-          console.log("Login successful!");
           setSuccess(true);
           window.location.href = "/profile";
         }

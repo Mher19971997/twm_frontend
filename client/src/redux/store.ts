@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { authReducer } from "./reducers/auth/authSlice";
 import { aiReducer } from "./reducers/ai/aiSlice";
+import { createTourReducer } from "./reducers/createTour/CreateTourSlice";
 
 const rootReducer = {
   auth: authReducer,
   ai: aiReducer,
+  createTour: createTourReducer,
 };
 
 export const makeStore = () =>

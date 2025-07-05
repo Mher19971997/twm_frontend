@@ -1,29 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
 import styles from "./ChatPage.module.css";
 import LinearLogo from "../../../../public/assets/svg/LinearLogoHome";
 import { useAppDispatch } from "@/redux/types/types";
 import { speakWithAi } from "@/redux/actions/aiAction";
-
-const predefinedResponses = [
-  {
-    keywords: ["բարև", "բարեվ", "hello", "hi"],
-    response: "Բարև, ինչպես կարող եմ օգնել ձեր ճամփորդությանը? 🌍",
-  },
-  {
-    keywords: ["հուլիս", "հանգիստ", "ուր գնալ"],
-    response:
-      "Հուլիսին առաջարկում եմ այցելել ծովափնյա քաղաքներ կամ Հայաստանը։ 🏖️",
-  },
-  {
-    keywords: ["արմենիա", "հայաստան", "armenia"],
-    response: "Հայաստանը հայտնի է իր պատմական վայրերով և բնությամբ 🇦🇲",
-  },
-  {
-    keywords: ["օգնիր", "օգնություն", "help"],
-    response:
-      "Իհարկե, կարող եմ օգնել գտնել լավագույն տուրերը կամ առաջարկել ուղղություններ։✈️",
-  },
-];
 
 const ChatWindow = () => {
   const [input, setInput] = useState("");
@@ -31,28 +12,36 @@ const ChatWindow = () => {
 
   const dispatch = useAppDispatch();
 
-  const getCustomResponse = (text) => {
-    const lower = text.toLowerCase();
-    for (let item of predefinedResponses) {
-      if (item.keywords.some((k) => lower.includes(k))) {
-        return item.response;
-      }
-    }
-    return "Կներես, դեռ չեմ հասկացել հարցը, բայց սիրով կսովորեմ 😊";
-  };
-
   const handleSend = async () => {
-    // if (!input.trim()) return;
+    if (!input.trim()) return;
 
-    // const userMessage = { sender: "user", text: input };
-    // const aiMessage = { sender: "ai", text: getCustomResponse(input) };
+    const userMessage = { sender: "user", text: input };
 
-    // setMessages([...messages, userMessage, aiMessage]);
-    // setInput("");
+    // First add user message
+    setMessages((prev) => [...prev, userMessage]);
 
-    const response = await dispatch(speakWithAi({ text: "barev" }));
+    try {
+      const response = await dispatch(
+        speakWithAi({
+          text: input,
+          token:
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNTYzZDdmZTNmZjVlZjYzNWJlOWQ2Y2ZkMmZmYWFkODEyZDg2MDM3Mzc4NWFlOGIxZjYzOWRhYmQ0NTZkYzUyYzlhZTg0NzUiLCJpYXQiOjE3NTE3MTg0NTMsImV4cCI6MTc1MTgwNDg1M30.wel2gZUy5c4QqxAt2nFAdfukXaB4kXLE_lwB-lMGJZc",
+        })
+      );
 
-    console.log("responseresponseresponse", response)
+      const aiText = response.payload || "Ներողություն, խնդիր տեղի ունեցավ։";
+      const aiMessage = { sender: "ai", text: aiText };
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      const errorMessage = {
+        sender: "ai",
+        text: "Ներողություն, չհաջողվեց կապ հաստատել։ Փորձեք կրկին։",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    }
+
+    setInput("");
   };
 
   return (
