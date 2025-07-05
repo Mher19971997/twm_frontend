@@ -5,6 +5,7 @@ import nookies, { destroyCookie } from "nookies";
 import { jwtDecode } from "jwt-decode";
 import { refreshToken } from "../actions/authAction";
 import { store } from "../store";
+import { LoginType } from "../actions/types";
 
 const settings = {
   withCredentials: true,
@@ -59,8 +60,9 @@ const onRequest = async (
   }
 
   try {
+    const userType = nookies.get(null).userType as 'auth_client' | 'auth_individual' | 'auth_organisation';
     const response = await store.dispatch(
-      refreshToken({ refreshToken: refresh }) as any
+      refreshToken({ refreshToken: refresh, type: userType }) as any
     );
 
     if (response.meta.requestStatus === "fulfilled") {
@@ -111,8 +113,9 @@ const onResponseError = async (error: AxiosError) => {
     }
 
     try {
+      const userType = nookies.get(null).userType as LoginType;
       const response = await store.dispatch(
-        refreshToken({ refreshToken: refresh }) as any
+        refreshToken({ refreshToken: refresh, type: userType }) as any
       );
 
       if (response.meta.requestStatus === "fulfilled") {
