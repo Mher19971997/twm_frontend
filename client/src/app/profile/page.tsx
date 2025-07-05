@@ -213,7 +213,9 @@ const ProfilePage = () => {
   const renderTourCard = (tour: any, type: any) => (
     <div
       key={tour.id}
-      className={`${styles.tourCard} ${hoveredTour === tour.id ? styles.tourCardHover : ""}`}
+      className={`${styles.tourCard} ${
+        hoveredTour === tour.id ? styles.tourCardHover : ""
+      }`}
       onMouseEnter={() => setHoveredTour(tour.id)}
       onMouseLeave={() => setHoveredTour(null)}
     >
@@ -227,7 +229,9 @@ const ProfilePage = () => {
         <img
           src={tour.image}
           alt={tour.title}
-            className={`${styles.tourImage} ${hoveredTour === tour.id ? styles.tourImageHover : ""}`}
+          className={`${styles.tourImage} ${
+            hoveredTour === tour.id ? styles.tourImageHover : ""
+          }`}
         />
       </div>
       <div className={styles.tourContent}>
@@ -318,21 +322,20 @@ const ProfilePage = () => {
         {/* Tourism Organization Sections */}
         {user.isTourismOrganization && (
           <>
-            {/* Completed Tours */}
+            {/* Upcoming Tours */}
+            <div className={styles.section}>
+              <h2 className={styles.sectionTitle}>Առաջարկվող Տուռեր</h2>
+              <div className={styles.toursGrid}>
+                {upcomingTours.map((tour) => renderTourCard(tour, "upcoming"))}
+              </div>
+            </div>
+
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Անցկացված Տուռեր</h2>
               <div className={styles.toursGrid}>
                 {completedTours.map((tour) =>
                   renderTourCard(tour, "completed")
                 )}
-              </div>
-            </div>
-
-            {/* Upcoming Tours */}
-            <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Առաջարկվող Տուռեր</h2>
-              <div className={styles.toursGrid}>
-                {upcomingTours.map((tour) => renderTourCard(tour, "upcoming"))}
               </div>
             </div>
 
