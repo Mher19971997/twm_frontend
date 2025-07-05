@@ -1,8 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from './reducers/auth/authSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import { authReducer } from "./reducers/auth/authSlice";
+import { aiReducer } from "./reducers/ai/aiSlice";
 
 const rootReducer = {
   auth: authReducer,
+  ai: aiReducer,
 };
 
 export const makeStore = () =>

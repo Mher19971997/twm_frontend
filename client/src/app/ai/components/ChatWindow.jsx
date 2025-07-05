@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./ChatPage.module.css";
 import LinearLogo from "../../../../public/assets/svg/LinearLogoHome";
+import { useAppDispatch } from "@/redux/types/types";
+import { speakWithAi } from "@/redux/actions/aiAction";
 
 const predefinedResponses = [
   {
@@ -9,7 +11,8 @@ const predefinedResponses = [
   },
   {
     keywords: ["հուլիս", "հանգիստ", "ուր գնալ"],
-    response: "Հուլիսին առաջարկում եմ այցելել ծովափնյա քաղաքներ կամ Հայաստանը։ 🏖️",
+    response:
+      "Հուլիսին առաջարկում եմ այցելել ծովափնյա քաղաքներ կամ Հայաստանը։ 🏖️",
   },
   {
     keywords: ["արմենիա", "հայաստան", "armenia"],
@@ -17,13 +20,16 @@ const predefinedResponses = [
   },
   {
     keywords: ["օգնիր", "օգնություն", "help"],
-    response: "Իհարկե, կարող եմ օգնել գտնել լավագույն տուրերը կամ առաջարկել ուղղություններ։✈️",
+    response:
+      "Իհարկե, կարող եմ օգնել գտնել լավագույն տուրերը կամ առաջարկել ուղղություններ։✈️",
   },
 ];
 
 const ChatWindow = () => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
+
+  const dispatch = useAppDispatch();
 
   const getCustomResponse = (text) => {
     const lower = text.toLowerCase();
@@ -35,14 +41,18 @@ const ChatWindow = () => {
     return "Կներես, դեռ չեմ հասկացել հարցը, բայց սիրով կսովորեմ 😊";
   };
 
-  const handleSend = () => {
-    if (!input.trim()) return;
+  const handleSend = async () => {
+    // if (!input.trim()) return;
 
-    const userMessage = { sender: "user", text: input };
-    const aiMessage = { sender: "ai", text: getCustomResponse(input) };
+    // const userMessage = { sender: "user", text: input };
+    // const aiMessage = { sender: "ai", text: getCustomResponse(input) };
 
-    setMessages([...messages, userMessage, aiMessage]);
-    setInput("");
+    // setMessages([...messages, userMessage, aiMessage]);
+    // setInput("");
+
+    const response = await dispatch(speakWithAi({ text: "barev" }));
+
+    console.log("responseresponseresponse", response)
   };
 
   return (
@@ -50,16 +60,14 @@ const ChatWindow = () => {
       <div className={styles.chatContent}>
         {messages.length === 0 ? (
           <div className={styles.logoWrapper}>
-            <LinearLogo/>
+            <LinearLogo />
           </div>
         ) : (
           messages.map((msg, i) => (
             <div
               key={i}
               className={
-                msg.sender === "user"
-                  ? styles.userMessage
-                  : styles.aiMessage
+                msg.sender === "user" ? styles.userMessage : styles.aiMessage
               }
             >
               {msg.text}
