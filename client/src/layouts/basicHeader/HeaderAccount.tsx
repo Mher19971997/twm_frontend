@@ -50,7 +50,7 @@ export default function HeaderAccount({ LinksHead }: HeaderAccountProps) {
         <div className={styles.contentHeader}>
           <div className={styles.leftHeader}>
             <div className={styles.logo}>
-              <Link href="/account">
+              <Link href="/profile">
                 <LinearLogo />
               </Link>
             </div>
@@ -74,7 +74,7 @@ export default function HeaderAccount({ LinksHead }: HeaderAccountProps) {
 
             <div className={styles.accountMenu}>
               <div className={styles.avatar}>
-                <Link href="/account">
+                <Link href="/profile">
                   <Image
                     src={AccountHeadImage.src}
                     alt="accountImage"

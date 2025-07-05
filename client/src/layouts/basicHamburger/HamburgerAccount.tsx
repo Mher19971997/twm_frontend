@@ -144,7 +144,7 @@ const HamburgerAccount = ({ LinksHead = [] }: { LinksHead: LinkType[] }) => {
           )}
 
           <li>
-            <Link href="/account">
+            <Link href="/profile">
               <Image
                 src={AccountHeadImage}
                 alt="Profile"
