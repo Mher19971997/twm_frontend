@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Tours.module.css";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
-import { LinksHead } from "../messages/page";
 import ProductCard from "@/components/Card/ProductCard";
 import { useAppDispatch, useAppSelector } from "@/redux/types/types";
 import { getTours } from "@/redux/actions/toursAction";
 import { useCookieValue } from "@/helpers/getCookieInfo";
+import { LinksHead } from "@/constants/linksHead";
 
 // Обновленные фильтры для реальных API полей
 const filters = [
@@ -249,10 +249,10 @@ const TourismPage: React.FC = () => {
           ))}
         </aside>
         <div>
-            <ProductCard
-          data={Object.keys(toursData)?.length > 0 ? toursData?.data : []}
-        />
-  </div>
+          <ProductCard
+            data={Object.keys(toursData)?.length > 0 ? toursData?.data : []}
+          />
+        </div>
       </div>
 
     </>

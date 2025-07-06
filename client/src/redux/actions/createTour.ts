@@ -31,7 +31,7 @@ export interface ICreateTour {
 
 export const createTour = createAsyncThunk(
   "tour/createTour",
-  async ({ data, token, ...other }: any, thunkAPI) => {   
+  async ({ data, token, ...other }: any, thunkAPI) => {
 
     try {
       const response = await instance.post(

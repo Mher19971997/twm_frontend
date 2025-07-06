@@ -4,8 +4,7 @@ import styles from "./page.module.css";
 import Sidebar from "./components/Sidebar";
 import ChatWindow from "./components/ChatWindow";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
-import { LinksHead } from "../messages/page";
-
+import { LinksHead } from "@/constants/linksHead";
 const ChatPage = () => {
   return (
     <>

@@ -3,7 +3,7 @@ import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
 import React, { useState, useEffect, useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { parseCookies } from "nookies";
-import { LinksHead } from "../messages/page";
+import { LinksHead } from "@/constants/linksHead";
 import Footer from "@/components/footer/Footer";
 import { StarIcon } from "../../../public/assets/svg/StarIcon";
 import { MapPinIcon } from "../../../public/assets/svg/MapPinIcon";
@@ -76,8 +76,8 @@ const ProfilePage = () => {
     userType === "auth_organisation"
       ? profileOrganisationData
       : userType === "auth_individual"
-      ? profileIndividualData
-      : profileClientData;
+        ? profileIndividualData
+        : profileClientData;
 
   useEffect(() => {
     if (token) {
@@ -252,9 +252,8 @@ const ProfilePage = () => {
   const renderTourCard = (tour: any, type: any) => (
     <div
       key={tour.uuid}
-      className={`${styles.tourCard} ${
-        hoveredTour === tour.id ? styles.tourCardHover : ""
-      }`}
+      className={`${styles.tourCard} ${hoveredTour === tour.id ? styles.tourCardHover : ""
+        }`}
       onMouseEnter={() => setHoveredTour(tour.id)}
       onMouseLeave={() => setHoveredTour(null)}
     >
@@ -268,9 +267,8 @@ const ProfilePage = () => {
         <img
           src={process.env.NEXT_PUBLIC_APP_IMAGE_URL + tour.img}
           alt={tour.title}
-          className={`${styles.tourImage} ${
-            hoveredTour === tour.id ? styles.tourImageHover : ""
-          }`}
+          className={`${styles.tourImage} ${hoveredTour === tour.id ? styles.tourImageHover : ""
+            }`}
         />
       </div>
       <div className={styles.tourContent}>

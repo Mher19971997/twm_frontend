@@ -3,7 +3,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
-import { LinksHead } from "@/app/messages/page";
+import { LinksHead } from "@/constants/linksHead";
 import Footer from "@/components/footer/Footer";
 import { MapPinIcons } from "../../../../public/assets/svg/MapPinIcons";
 import { CalendarsIcon } from "../../../../public/assets/svg/CalendarsIcon";

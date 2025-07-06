@@ -9,6 +9,7 @@ import LogOut from "../../../public/assets/svg/LogOut";
 import AccordionIconSettings from "../../../public/assets/svg/AccordionIconSettings";
 import Link from "next/link";
 import ContentFirstAccordion from "../contentFirstAccordion/ContentFirstAccordion";
+import { destroyCookie } from "nookies";
 export default function SettingsAccordion({ onPhotoChange }: { onPhotoChange: (url: string) => void }) {
 
     const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -18,9 +19,9 @@ export default function SettingsAccordion({ onPhotoChange }: { onPhotoChange: (u
     };
 
     const handleLogOut = () => {
-        localStorage.removeItem("userToken");
-        sessionStorage.removeItem("userToken");
-
+        destroyCookie(null, "authToken");
+        destroyCookie(null, "refreshToken");
+        destroyCookie(null, "userType");
         window.history.pushState(null, "", window.location.href);
         window.onpopstate = function () {
             window.history.go(1);
@@ -29,12 +30,12 @@ export default function SettingsAccordion({ onPhotoChange }: { onPhotoChange: (u
     const [rightAccount, setRightAccount] = useState<string[]>([]);
 
     const blockPerson = (person: string) => {
-      setRightAccount((prevRightAccount) => {
-        if (!prevRightAccount.includes(person)) {
-          return [...prevRightAccount, person];
-        }
-        return prevRightAccount;
-      });
+        setRightAccount((prevRightAccount) => {
+            if (!prevRightAccount.includes(person)) {
+                return [...prevRightAccount, person];
+            }
+            return prevRightAccount;
+        });
     };
     interface MenuItemsProps {
         title: string,
@@ -45,7 +46,7 @@ export default function SettingsAccordion({ onPhotoChange }: { onPhotoChange: (u
     const menuItems: MenuItemsProps[] = [
         {
             title: "Account Information",
-            content: <ContentFirstAccordion onPhotoChange={onPhotoChange}/>,
+            content: <ContentFirstAccordion onPhotoChange={onPhotoChange} />,
             className: styles.userIcon,
             svg: <SettingsHome />,
         },
