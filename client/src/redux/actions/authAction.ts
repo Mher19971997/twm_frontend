@@ -1,5 +1,3 @@
-"use client";
-
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { instance } from '../api/api'
 import { setCookie } from 'nookies'

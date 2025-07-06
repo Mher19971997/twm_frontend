@@ -8,6 +8,7 @@ import ProductCard from "@/components/Card/ProductCard";
 import { useAppDispatch, useAppSelector } from "@/redux/types/types";
 import { getTours } from "@/redux/actions/toursAction";
 import { useCookieValue } from "@/helpers/getCookieInfo";
+import { LinksHead } from "@/constants/linksHead";
 
 const Offer = () => {
   const [selectedType, setSelectedType] = useState<
@@ -26,7 +27,7 @@ const Offer = () => {
     }
   }, [dispatch]);
 
-    useEffect(() => {
+  useEffect(() => {
     if (tours && tours.data) {
       const organizationFilteredData = tours.data.filter(
         (item: any) => item.type === "organisation"
@@ -42,15 +43,14 @@ const Offer = () => {
 
   return (
     <>
-      <HeaderAccount LinksHead={[]} />
+      <HeaderAccount LinksHead={LinksHead} />
       <div className={styles.container}>
         <h1 className={styles.title}>Choose Type of Tours</h1>
 
         <div className={styles.selectionGrid}>
           <div
-            className={`${styles.card} ${
-              selectedType === "company" ? styles.active : ""
-            }`}
+            className={`${styles.card} ${selectedType === "company" ? styles.active : ""
+              }`}
             onClick={() => setSelectedType("company")}
           >
             <img
@@ -62,9 +62,8 @@ const Offer = () => {
           </div>
 
           <div
-            className={`${styles.card} ${
-              selectedType === "individual" ? styles.active : ""
-            }`}
+            className={`${styles.card} ${selectedType === "individual" ? styles.active : ""
+              }`}
             onClick={() => setSelectedType("individual")}
           >
             <img

@@ -20,7 +20,7 @@ type LinkType = {
   isVisible: boolean;
 };
 
-const HamburgerAccount = ({ LinksHead = [] }: { LinksHead: LinkType[] }) => {
+const HamburgerAccount = ({ LinksHead = [] }: { LinksHead: any[] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isContactsOpen, setIsContactsOpen] = useState(false);
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
@@ -85,10 +85,10 @@ const HamburgerAccount = ({ LinksHead = [] }: { LinksHead: LinkType[] }) => {
                     isContacts
                       ? toggleContacts
                       : isFavorites
-                      ? toggleFavorites
-                      : isFriendRequest
-                      ? () => setIsFriendRequestOpen(true)
-                      : undefined
+                        ? toggleFavorites
+                        : isFriendRequest
+                          ? () => setIsFriendRequestOpen(true)
+                          : undefined
                   }
                 >
                   <Link href={href}>

@@ -11,17 +11,28 @@ import SettingsIcon from "../../../public/assets/svg/SettingsIcon";
 import AccountHeadImage from "../../../public/assets/png/accountHeadImage.png";
 import Image from "next/image";
 import HamburgerAccount from "../basicHamburger/HamburgerAccount";
+import { parseCookies } from "nookies";
+import { useEffect, useState } from "react";
+import { profileOrganisation } from "@/redux/actions/profileOrganisation";
+import { profileIndividual } from "@/redux/actions/profileIndividual";
+import { profileClient } from "@/redux/actions/profileClient";
+import { getTours } from "@/redux/actions/toursAction";
+import { useAppDispatch, useAppSelector } from "@/redux/types/types";
+import { useCookieValue } from "@/helpers/getCookieInfo";
+import { useRouter } from "next/navigation";
 export type LinkType = {
   href: string;
   icon: JSX.Element;
   text: string;
   isVisible: boolean;
+  isContacts?: boolean;
+  isFavorites?: boolean;
+  isFriendRequest?: boolean;
 };
-
 export const iconsWithBackground: JSX.Element[] = [<HomeIcon />, <Video />];
 
 interface HeaderAccountProps {
-  LinksHead: LinkType[];
+  LinksHead: any[];
 }
 
 type LinksProps = {
@@ -43,7 +54,62 @@ const links: LinksProps[] = [
   },
 ];
 
-export default function HeaderAccount({ LinksHead }: HeaderAccountProps) {
+export default function HeaderAccount({ LinksHead }: any) {
+
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(true);
+  const userType = useCookieValue("userType");
+  const token = useCookieValue("authToken");
+  const profileClientData = useAppSelector((state) => state.profileClient.data);
+  const profileIndividualData = useAppSelector(
+    (state) => state.profileIndividual.data
+  );
+  const profileOrganisationData = useAppSelector(
+    (state) => state.profileOrganisation.data
+  );
+
+  const profile: any =
+    userType === "auth_organisation"
+      ? profileOrganisationData
+      : userType === "auth_individual"
+        ? profileIndividualData
+        : profileClientData;
+
+
+  useEffect(() => {
+    if (token) {
+      if (userType === "auth_organisation") {
+        dispatch(profileOrganisation(token));
+      } else if (userType === "auth_individual") {
+        dispatch(profileIndividual(token));
+      } else if (userType === "auth_client") {
+        dispatch(profileClient(token));
+      }
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    const checkAuth = () => {
+      try {
+        const cookies = parseCookies();
+        const authToken = cookies.authToken;
+        const refreshToken = cookies.refreshToken;
+        const userType = cookies.userType;
+
+        if (!authToken || !refreshToken || !userType) {
+          router.push("/");
+          return;
+        }
+
+        setIsLoading(false);
+      } catch (error) {
+        router.push("/");
+      }
+    };
+
+    checkAuth();
+  }, [router]);
   return (
     <header className={styles.header}>
       <Container>

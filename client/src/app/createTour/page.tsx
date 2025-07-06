@@ -1,11 +1,11 @@
 "use client";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
 import React, { useState } from "react";
-import { LinksHead } from "../messages/page";
 import Footer from "@/components/footer/Footer";
 import styles from "./page.module.css";
 import { useAppDispatch } from "@/redux/types/types";
 import { createTour } from "@/redux/actions/createTour";
+import { LinksHead } from "@/constants/linksHead";
 
 const TourCreation = () => {
   const [formData, setFormData] = useState<any>({
@@ -81,38 +81,38 @@ const TourCreation = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-const handleSubmit = () => {
-  if (!validateForm()) {
-    return;
-  }
-
-  const submitData = new FormData();
-
-  Object.entries(formData).forEach(([key, value]) => {
-    if (value !== null && value !== "") {
-      submitData.append(key, value as any);
+  const handleSubmit = () => {
+    if (!validateForm()) {
+      return;
     }
-  });
 
-  if (mainImage) {
-    submitData.append("img", mainImage);
-  }
+    const submitData = new FormData();
 
-  galleryImages.forEach((file:any) => {
-    submitData.append("gallery", file);
-  });
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value !== null && value !== "") {
+        submitData.append(key, value as any);
+      }
+    });
 
-  for (const pair of submitData.entries()) {
-  }
+    if (mainImage) {
+      submitData.append("img", mainImage);
+    }
 
-  dispatch(
-    createTour({
-      data: submitData,
-      token:
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzODFhOTZhYTNlODYzNWJiOGQ0OWM4NWZmYWE4NDRhZDg2MDM3NjY4NWZjOGIxNzYxYzFmZWQ0MDJkYzU2OWRmYzgzMjAiLCJpYXQiOjE3NTE3MjE0NjUsImV4cCI6MTc1MTgwNzg2NX0.xLdHAoWD-avyH339W-UyyZiItSFX9zAmoh9-bz-xsk0",
-    })
-  );
-};
+    galleryImages.forEach((file: any) => {
+      submitData.append("gallery", file);
+    });
+
+    for (const pair of submitData.entries()) {
+    }
+
+    dispatch(
+      createTour({
+        data: submitData,
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ZjMzODFhOTZhYTNlODYzNWJiOGQ0OWM4NWZmYWE4NDRhZDg2MDM3NjY4NWZjOGIxNzYxYzFmZWQ0MDJkYzU2OWRmYzgzMjAiLCJpYXQiOjE3NTE3MjE0NjUsImV4cCI6MTc1MTgwNzg2NX0.xLdHAoWD-avyH339W-UyyZiItSFX9zAmoh9-bz-xsk0",
+      })
+    );
+  };
 
   return (
     <>
@@ -139,9 +139,8 @@ const handleSubmit = () => {
                 //   ...styles.input,
                 //   ...(errors.name ? styles.inputError : {}),
                 // }}
-                className={`${styles.input} ${
-                  errors.name ? styles.inputError : ""
-                }`}
+                className={`${styles.input} ${errors.name ? styles.inputError : ""
+                  }`}
                 placeholder="Tour name"
               />
               {errors.name && (
@@ -157,9 +156,8 @@ const handleSubmit = () => {
                   name="start_date"
                   value={formData.start_date}
                   onChange={handleInputChange}
-                  className={`${styles.input} ${
-                    errors.start_date ? styles.inputError : ""
-                  }`}
+                  className={`${styles.input} ${errors.start_date ? styles.inputError : ""
+                    }`}
                 />
                 {errors.start_date && (
                   <span className={styles.error}>{errors.start_date}</span>
@@ -173,9 +171,8 @@ const handleSubmit = () => {
                   name="end_date"
                   value={formData.end_date}
                   onChange={handleInputChange}
-                  className={`${styles.input} ${
-                    errors.end_date ? styles.inputError : ""
-                  }`}
+                  className={`${styles.input} ${errors.end_date ? styles.inputError : ""
+                    }`}
                 />
                 {errors.end_date && (
                   <span className={styles.error}>{errors.end_date}</span>
@@ -189,9 +186,8 @@ const handleSubmit = () => {
                 name="description"
                 value={formData.description}
                 onChange={handleInputChange}
-                className={`${styles.textarea} ${
-                  errors.description ? styles.inputError : ""
-                }`}
+                className={`${styles.textarea} ${errors.description ? styles.inputError : ""
+                  }`}
                 placeholder="Detailed tour description"
                 rows={4}
               />
@@ -213,9 +209,8 @@ const handleSubmit = () => {
                   name="price"
                   value={formData.price}
                   onChange={handleInputChange}
-                  className={`${styles.input} ${
-                    errors.price ? styles.inputError : {}
-                  }`}
+                  className={`${styles.input} ${errors.price ? styles.inputError : {}
+                    }`}
                   placeholder="0"
                   min="0"
                   step="0.01"
@@ -232,9 +227,8 @@ const handleSubmit = () => {
                   name="rate"
                   value={formData.rate}
                   onChange={handleInputChange}
-                  className={`${styles.input} ${
-                    errors.rate ? styles.inputError : ""
-                  }`}
+                  className={`${styles.input} ${errors.rate ? styles.inputError : ""
+                    }`}
                   min="1"
                   max="5"
                   step="0.1"
@@ -440,12 +434,12 @@ const handleSubmit = () => {
             <button
               onClick={handleSubmit}
               className={styles.submitButton}
-              // onMouseEnter={(e: any) => {
-              //   Object.assign(e.target.style, styles.submitButtonHover);
-              // }}
-              // onMouseLeave={(e: any) => {
-              //   Object.assign(e.target.style, styles.submitButton);
-              // }}
+            // onMouseEnter={(e: any) => {
+            //   Object.assign(e.target.style, styles.submitButtonHover);
+            // }}
+            // onMouseLeave={(e: any) => {
+            //   Object.assign(e.target.style, styles.submitButton);
+            // }}
             >
               Create Tour
             </button>
