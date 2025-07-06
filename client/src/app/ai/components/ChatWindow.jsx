@@ -4,6 +4,7 @@ import styles from "./ChatPage.module.css";
 import LinearLogo from "../../../../public/assets/svg/LinearLogoHome";
 import { useAppDispatch } from "@/redux/types/types";
 import { speakWithAi } from "@/redux/actions/aiAction";
+import { useCookieValue } from "@/helpers/getCookieInfo";
 
 const ChatWindow = () => {
   const [input, setInput] = useState("");
