@@ -6,15 +6,15 @@ const ProductCard = ({ data }: any) => {
   return (
     <>
       <main className={styles.cardsContainer}>
-        {data.map((tour: any) => (
+        {data?.map((tour: any) => (
           <div
-            key={tour.id}
+            key={tour.uuid}
             className={styles.card}
-            onClick={() => router.push(`/tours/${tour.id}`)}
+            onClick={() => router.push(`/tours/${tour.uuid}`)}
             style={{ cursor: "pointer" }}
           >
             <div className={styles.cardImageContainer}>
-              <img src={tour.image} alt={tour.name} />
+            <img src={process.env.NEXT_PUBLIC_APP_IMAGE_URL +tour.img} alt={tour.name} />
             </div>
             <div className={styles.cardContent}>
               <h3>{tour.name}</h3>

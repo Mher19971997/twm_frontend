@@ -1,47 +1,45 @@
+"use client";
 import React, { useState } from "react";
 import styles from "./ChatPage.module.css";
 import LinearLogo from "../../../../public/assets/svg/LinearLogoHome";
-
-const predefinedResponses = [
-  {
-    keywords: ["բարև", "բարեվ", "hello", "hi"],
-    response: "Բարև, ինչպես կարող եմ օգնել ձեր ճամփորդությանը? 🌍",
-  },
-  {
-    keywords: ["հուլիս", "հանգիստ", "ուր գնալ"],
-    response: "Հուլիսին առաջարկում եմ այցելել ծովափնյա քաղաքներ կամ Հայաստանը։ 🏖️",
-  },
-  {
-    keywords: ["արմենիա", "հայաստան", "armenia"],
-    response: "Հայաստանը հայտնի է իր պատմական վայրերով և բնությամբ 🇦🇲",
-  },
-  {
-    keywords: ["օգնիր", "օգնություն", "help"],
-    response: "Իհարկե, կարող եմ օգնել գտնել լավագույն տուրերը կամ առաջարկել ուղղություններ։✈️",
-  },
-];
+import { useAppDispatch } from "@/redux/types/types";
+import { speakWithAi } from "@/redux/actions/aiAction";
 
 const ChatWindow = () => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const getCustomResponse = (text) => {
-    const lower = text.toLowerCase();
-    for (let item of predefinedResponses) {
-      if (item.keywords.some((k) => lower.includes(k))) {
-        return item.response;
-      }
-    }
-    return "Կներես, դեռ չեմ հասկացել հարցը, բայց սիրով կսովորեմ 😊";
-  };
+  const dispatch = useAppDispatch();
+  const token = useCookieValue("authToken");
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
 
     const userMessage = { sender: "user", text: input };
-    const aiMessage = { sender: "ai", text: getCustomResponse(input) };
 
-    setMessages([...messages, userMessage, aiMessage]);
+    // First add user message
+    setMessages((prev) => [...prev, userMessage]);
+
+    try {
+      const response = await dispatch(
+        speakWithAi({
+          text: input,
+          token,
+        })
+      );
+
+      const aiText = response.payload || "Ներողություն, խնդիր տեղի ունեցավ։";
+      const aiMessage = { sender: "ai", text: aiText };
+
+      setMessages((prev) => [...prev, aiMessage]);
+    } catch (error) {
+      const errorMessage = {
+        sender: "ai",
+        text: "Ներողություն, չհաջողվեց կապ հաստատել։ Փորձեք կրկին։",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
+    }
+
     setInput("");
   };
 
@@ -50,16 +48,14 @@ const ChatWindow = () => {
       <div className={styles.chatContent}>
         {messages.length === 0 ? (
           <div className={styles.logoWrapper}>
-            <LinearLogo/>
+            <LinearLogo />
           </div>
         ) : (
           messages.map((msg, i) => (
             <div
               key={i}
               className={
-                msg.sender === "user"
-                  ? styles.userMessage
-                  : styles.aiMessage
+                msg.sender === "user" ? styles.userMessage : styles.aiMessage
               }
             >
               {msg.text}

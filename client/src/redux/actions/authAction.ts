@@ -130,11 +130,8 @@ export const refreshToken = createAsyncThunk(
           path: '/',
         })
 
-      console.log('refresh-tokens res', response.data)
-
       return response.data
     } catch (error: any) {
-      console.log('refresh-tokens error', error)
       return thunkAPI.rejectWithValue({
         errors: [error.message],
         fieldsErrors: undefined,

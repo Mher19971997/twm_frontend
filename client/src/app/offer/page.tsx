@@ -1,91 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
 import Footer from "@/components/footer/Footer";
 import styles from "./page.module.css";
 import { useRouter } from "next/navigation";
 import ProductCard from "@/components/Card/ProductCard";
-
-const touristCompanies = [
-  {
-    name: "Vardan Travel",
-    tours: ["Paris Tour", "Yerevan City Tour", "Dilijan Weekend"],
-  },
-  {
-    name: "HayTour",
-    tours: ["Lake Sevan Relax", "Tatev Adventure"],
-  },
-];
-
-const tours = [
-  {
-    id: 1,
-    name: "Paris Getaway",
-    destination: "Paris, France",
-    image: "./assets/alps.jfif",
-    type: "City",
-    price: 50000,
-    location: "France",
-    rating: 4.5,
-  },
-  {
-    id: 2,
-    name: "Alps Adventure",
-    destination: "Swiss Alps",
-    image: "./assets/Kenya.jfif",
-    type: "Mountain",
-    price: 90000,
-    location: "Switzerland",
-    rating: 4.8,
-  },
-  {
-    id: 3,
-    name: "Maldives Escape",
-    destination: "Maldives",
-    image: "./assets/maldivs.jfif",
-    type: "Beach",
-    price: 100000,
-    location: "Maldives",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Safari Journey",
-    destination: "Kenya",
-    image: "./assets/paris.avif",
-    type: "Wildlife",
-    price: 40000,
-    location: "Kenya",
-    rating: 4.2,
-  },
-  {
-    id: 5,
-    name: "Tokyo Tour",
-    destination: "Tokyo, Japan",
-    image: "./assets/tokyo.jfif",
-    type: "City",
-    price: 20000,
-    location: "Japan",
-    rating: 4.3,
-  },
-];
-
-const individualTrips = [
-  {
-    name: "Anna's Hiking Trip",
-    details: "A small group hike to Aragats",
-  },
-  {
-    name: "Gev's Road Trip",
-    details: "Road trip from Yerevan to Artsakh",
-  },
-];
+import { useAppDispatch, useAppSelector } from "@/redux/types/types";
+import { getTours } from "@/redux/actions/toursAction";
+import { useCookieValue } from "@/helpers/getCookieInfo";
 
 const Offer = () => {
   const [selectedType, setSelectedType] = useState<
     "company" | "individual" | null
   >(null);
   const router = useRouter();
+  const token = useCookieValue("authToken");
+  const dispatch = useAppDispatch();
+  const tours: any = useAppSelector((state) => state.tours.data);
+  const [organizationData, setOrganizationData] = useState<any>([]);
+  const [individual, setIndividual] = useState<any>([]);
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getTours({ token }));
+    }
+  }, [dispatch]);
+
+    useEffect(() => {
+    if (tours && tours.data) {
+      const organizationFilteredData = tours.data.filter(
+        (item: any) => item.type === "organisation"
+      );
+      const individualFilteredData = tours.data.filter(
+        (item: any) => item.type === "individual"
+      );
+
+      setOrganizationData(organizationFilteredData);
+      setIndividual(individualFilteredData);
+    }
+  }, [tours]);
 
   return (
     <>
@@ -128,13 +81,12 @@ const Offer = () => {
             {selectedType === "company" ? (
               <div className={styles.fadeIn}>
                 <h2>Tourist Agencies</h2>
-                                <ProductCard data={tours} />
-
+                <ProductCard data={organizationData} />
               </div>
             ) : (
               <div className={styles.fadeIn}>
                 <h2>Individual Trips</h2>
-                <ProductCard data={tours} />
+                <ProductCard data={individual} />
               </div>
             )}
           </div>

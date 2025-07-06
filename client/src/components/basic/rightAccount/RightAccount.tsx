@@ -159,14 +159,12 @@ export default function RightAccount({
 
   const handlePostMessage = () => {
     if (message.trim()) {
-      console.log(`Message to ${selectedUser}: ${message}`);
       setMessage("");
       closeModal();
     }
   };
 
   const handleGoToUserAccount = () => {
-    console.log(`Navigating to ${selectedUser}'s account`);
     closeModal();
   };
 

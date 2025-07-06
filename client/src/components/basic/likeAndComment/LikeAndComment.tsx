@@ -41,7 +41,6 @@ export default function LikeAndComment() {
     try {
       if (navigator.share) {
         await navigator.share(shareData);
-        console.log("Shared successfully!");
       } else {
         alert("Sharing not supported on this device/browser.");
       }
