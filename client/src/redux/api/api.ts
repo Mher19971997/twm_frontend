@@ -16,15 +16,6 @@ export const instance = axios.create({
   ...settings,
 });
 
-const noAuthEndpoints = [
-  "/auth/login",
-  "/auth/register",
-  "/auth/forgotPassword",
-  "/auth/verifyContact",
-  "/auth/newPassword",
-  "/class",
-];
-
 
 interface RetryAxiosRequestConfig extends AxiosRequestConfig {
   _retry?: boolean;
@@ -33,10 +24,7 @@ interface RetryAxiosRequestConfig extends AxiosRequestConfig {
 const onRequest = async (
   config: InternalAxiosRequestConfig
 ): Promise<InternalAxiosRequestConfig> => {
-  if (noAuthEndpoints.some((endpoint) => config.url?.endsWith(endpoint))) {
-    return config;
-  }
-
+ 
   const cookies = nookies.get(null);
   const token = cookies.authToken;
 

@@ -62,19 +62,19 @@ const TourCreation = () => {
   const validateForm = () => {
     const newErrors: any = {};
 
-    if (!formData.name.trim()) newErrors.name = "Անունը պարտադիր է";
+    if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.start_date)
-      newErrors.start_date = "Մեկնարկի ամսաթիվը պարտադիր է";
-    if (!formData.end_date) newErrors.end_date = "Ավարտի ամսաթիվը պարտադիր է";
+      newErrors.start_date = "Start date is required";
+    if (!formData.end_date) newErrors.end_date = "End date is required";
     if (!formData.description.trim())
-      newErrors.description = "Նկարագրությունը պարտադիր է";
+      newErrors.description = "Description is required";
     if (!formData.price || formData.price <= 0)
-      newErrors.price = "Գինը պետք է լինի դրական թիվ";
+      newErrors.price = "Price must be a positive number";
     if (formData.rate < 1 || formData.rate > 5)
-      newErrors.rate = "Գնահատականը պետք է լինի 1-5 միջակայքում";
+      newErrors.rate = "Rating must be between 1-5";
 
     if (new Date(formData.end_date) <= new Date(formData.start_date)) {
-      newErrors.end_date = "Ավարտի ամսաթիվը պետք է լինի մեկնարկից հետո";
+      newErrors.end_date = "End date must be after start date";
     }
 
     setErrors(newErrors);
@@ -90,7 +90,6 @@ const handleSubmit = () => {
 
   Object.entries(formData).forEach(([key, value]) => {
     if (value !== null && value !== "") {
-      console.log(`${key}: ${value}`);
       submitData.append(key, value as any);
     }
   });
@@ -104,7 +103,6 @@ const handleSubmit = () => {
   });
 
   for (const pair of submitData.entries()) {
-    console.log(`${pair[0]}:`, pair[1]);
   }
 
   dispatch(
@@ -116,24 +114,22 @@ const handleSubmit = () => {
   );
 };
 
-  console.log("formData", formData);
-
   return (
     <>
       <HeaderAccount LinksHead={LinksHead} />
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1 className={styles.title}>Ստեղծել Նոր Տուր</h1>
-          <p className={styles.subtitle}>Լրացրեք բոլոր անհրաժեշտ դաշտերը</p>
+          <h1 className={styles.title}>Create New Tour</h1>
+          <p className={styles.subtitle}>Fill in all required fields</p>
         </div>
 
         <div className={styles.form}>
           {/* Main Information Section */}
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Հիմնական Տեղեկություններ</h2>
+            <h2 className={styles.sectionTitle}>Basic Information</h2>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Անուն *</label>
+              <label className={styles.label}>Name *</label>
               <input
                 type="text"
                 name="name"
@@ -146,7 +142,7 @@ const handleSubmit = () => {
                 className={`${styles.input} ${
                   errors.name ? styles.inputError : ""
                 }`}
-                placeholder="Տուր-ի անունը"
+                placeholder="Tour name"
               />
               {errors.name && (
                 <span className={styles.error}>{errors.name}</span>
@@ -155,7 +151,7 @@ const handleSubmit = () => {
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Մեկնարկի Ամսաթիվ *</label>
+                <label className={styles.label}>Start Date *</label>
                 <input
                   type="date"
                   name="start_date"
@@ -171,7 +167,7 @@ const handleSubmit = () => {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Ավարտի Ամսաթիվ *</label>
+                <label className={styles.label}>End Date *</label>
                 <input
                   type="date"
                   name="end_date"
@@ -188,7 +184,7 @@ const handleSubmit = () => {
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Նկարագրություն *</label>
+              <label className={styles.label}>Description *</label>
               <textarea
                 name="description"
                 value={formData.description}
@@ -196,7 +192,7 @@ const handleSubmit = () => {
                 className={`${styles.textarea} ${
                   errors.description ? styles.inputError : ""
                 }`}
-                placeholder="Տուր-ի մանրամասն նկարագրություն"
+                placeholder="Detailed tour description"
                 rows={4}
               />
               {errors.description && (
@@ -207,11 +203,11 @@ const handleSubmit = () => {
 
           {/* Price & Rating Section */}
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Գին և Գնահատական</h2>
+            <h2 className={styles.sectionTitle}>Price and Rating</h2>
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Գին *</label>
+                <label className={styles.label}>Price *</label>
                 <input
                   type="number"
                   name="price"
@@ -230,7 +226,7 @@ const handleSubmit = () => {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Գնահատական (1-5) *</label>
+                <label className={styles.label}>Rating (1-5) *</label>
                 <input
                   type="number"
                   name="rate"
@@ -251,7 +247,7 @@ const handleSubmit = () => {
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Տուրի Կատեգորիան</label>
+                <label className={styles.label}>Tour Category</label>
                 <select
                   name="tourType"
                   value={formData.tourType}
@@ -267,16 +263,16 @@ const handleSubmit = () => {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Կարգավիճակ</label>
+                <label className={styles.label}>Status</label>
                 <select
                   name="status"
                   value={formData.status}
                   onChange={handleInputChange}
                   className={styles.select}
                 >
-                  <option value="active">Ակտիվ</option>
-                  <option value="inactive">Ոչ ակտիվ</option>
-                  <option value="draft">Նախագիծ</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                  <option value="draft">Draft</option>
                 </select>
               </div>
             </div>
@@ -285,38 +281,38 @@ const handleSubmit = () => {
           {/* Location & Details Section */}
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              Տեղակայություն և Մանրամասներ
+              Location and Details
             </h2>
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Մեկնարկի Վայր</label>
+                <label className={styles.label}>Departure Location</label>
                 <input
                   type="text"
                   name="fromLocation"
                   value={formData.fromLocation}
                   onChange={handleInputChange}
                   className={styles.input}
-                  placeholder="Օրինակ՝ Երևան"
+                  placeholder="e.g. Yerevan"
                 />
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Նպատակակետ</label>
+                <label className={styles.label}>Destination</label>
                 <input
                   type="text"
                   name="toLocation"
                   value={formData.toLocation}
                   onChange={handleInputChange}
                   className={styles.input}
-                  placeholder="Օրինակ՝ Գյումրի"
+                  placeholder="e.g. Gyumri"
                 />
               </div>
             </div>
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Հասանելի Տեղեր</label>
+                <label className={styles.label}>Available Seats</label>
                 <input
                   type="number"
                   name="availableSeats"
@@ -329,7 +325,7 @@ const handleSubmit = () => {
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Խմբի Ընդհանուր Չափ</label>
+                <label className={styles.label}>Total Group Size</label>
                 <input
                   type="number"
                   name="totalGroupSize"
@@ -344,48 +340,48 @@ const handleSubmit = () => {
 
             <div className={styles.inputRow}>
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Բնակարանի Տիպ</label>
+                <label className={styles.label}>Accommodation Type</label>
                 <select
                   name="accommodationType"
                   value={formData.accommodationType}
                   onChange={handleInputChange}
                   className={styles.select}
                 >
-                  <option value="">Ընտրել...</option>
-                  <option value="hotel">Հյուրանոց</option>
-                  <option value="hostel">Հոստել</option>
-                  <option value="apartment">Բնակարան</option>
-                  <option value="villa">Վիլլա</option>
-                  <option value="camping">Ճամբարային</option>
+                  <option value="">Select...</option>
+                  <option value="hotel">Hotel</option>
+                  <option value="hostel">Hostel</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="villa">Villa</option>
+                  <option value="camping">Camping</option>
                 </select>
               </div>
 
               <div className={styles.inputGroup}>
-                <label className={styles.label}>Հյուրանոցի Աստղեր</label>
+                <label className={styles.label}>Hotel Stars</label>
                 <select
                   name="hotelStars"
                   value={formData.hotelStars}
                   onChange={handleInputChange}
                   className={styles.select}
                 >
-                  <option value="">Ընտրել...</option>
-                  <option value="1">1 Աստղ</option>
-                  <option value="2">2 Աստղ</option>
-                  <option value="3">3 Աստղ</option>
-                  <option value="4">4 Աստղ</option>
-                  <option value="5">5 Աստղ</option>
+                  <option value="">Select...</option>
+                  <option value="1">1 Star</option>
+                  <option value="2">2 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="5">5 Stars</option>
                 </select>
               </div>
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Ներառված Ծառայություններ</label>
+              <label className={styles.label}>Included Services</label>
               <textarea
                 name="includedServices"
                 value={formData.includedServices}
                 onChange={handleInputChange}
                 className={styles.textarea}
-                placeholder="Նկարագրեք ներառված ծառայությունները"
+                placeholder="Describe included services"
                 rows={3}
               />
             </div>
@@ -393,10 +389,10 @@ const handleSubmit = () => {
 
           {/* Images Section */}
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Նկարներ</h2>
+            <h2 className={styles.sectionTitle}>Images</h2>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Հիմնական Նկար</label>
+              <label className={styles.label}>Main Image</label>
               <div className={styles.fileInputWrapper}>
                 <input
                   type="file"
@@ -406,13 +402,13 @@ const handleSubmit = () => {
                   id="mainImage"
                 />
                 <label htmlFor="mainImage" className={styles.fileLabel}>
-                  {mainImage ? mainImage.name : "Ընտրել նկար"}
+                  {mainImage ? mainImage.name : "Select image"}
                 </label>
               </div>
             </div>
 
             <div className={styles.inputGroup}>
-              <label className={styles.label}>Պատկերասրահ</label>
+              <label className={styles.label}>Gallery</label>
               <div className={styles.fileInputWrapper}>
                 <input
                   type="file"
@@ -424,8 +420,8 @@ const handleSubmit = () => {
                 />
                 <label htmlFor="galleryImages" className={styles.fileLabel}>
                   {galleryImages.length > 0
-                    ? `${galleryImages.length} նկար ընտրված`
-                    : "Ընտրել նկարներ"}
+                    ? `${galleryImages.length} images selected`
+                    : "Select images"}
                 </label>
               </div>
               {galleryImages.length > 0 && (
@@ -451,7 +447,7 @@ const handleSubmit = () => {
               //   Object.assign(e.target.style, styles.submitButton);
               // }}
             >
-              Ստեղծել Տուր
+              Create Tour
             </button>
           </div>
         </div>

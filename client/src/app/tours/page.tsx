@@ -1,102 +1,154 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./Tours.module.css";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
 import { LinksHead } from "../messages/page";
 import ProductCard from "@/components/Card/ProductCard";
+import { useAppDispatch, useAppSelector } from "@/redux/types/types";
+import { getTours } from "@/redux/actions/toursAction";
+import { useCookieValue } from "@/helpers/getCookieInfo";
 
-const tours = [
-  {
-    id: 1,
-    name: "Paris Getaway",
-    destination: "Paris, France",
-    image: "./assets/alps.jfif",
-    type: "City",
-    price: 50000,
-    location: "France",
-    rating: 4.5,
-  },
-  {
-    id: 2,
-    name: "Alps Adventure",
-    destination: "Swiss Alps",
-    image: "./assets/Kenya.jfif",
-    type: "Mountain",
-    price: 90000,
-    location: "Switzerland",
-    rating: 4.8,
-  },
-  {
-    id: 3,
-    name: "Maldives Escape",
-    destination: "Maldives",
-    image: "./assets/maldivs.jfif",
-    type: "Beach",
-    price: 100000,
-    location: "Maldives",
-    rating: 5,
-  },
-  {
-    id: 4,
-    name: "Safari Journey",
-    destination: "Kenya",
-    image: "./assets/paris.avif",
-    type: "Wildlife",
-    price: 40000,
-    location: "Kenya",
-    rating: 4.2,
-  },
-  {
-    id: 5,
-    name: "Tokyo Tour",
-    destination: "Tokyo, Japan",
-    image: "./assets/tokyo.jfif",
-    type: "City",
-    price: 20000,
-    location: "Japan",
-    rating: 4.3,
-  },
-];
-
-const unique = (arr: any[]) => [...new Set(arr)];
-
+// Обновленные фильтры для реальных API полей
 const filters = [
   {
-    name: "Categories",
-    types: unique(tours.map((tour) => tour.type)),
+    name: "tourType",
+    label: "Tour Type",
+    types: ["package", "individual", "group"],
+    filterType: "checkbox", // массив
   },
   {
-    name: "Price",
-    types: unique(tours.map((tour) => tour.price.toString())),
+    name: "status",
+    label: "Status",
+    types: ["active", "finished", "upcoming"],
+    filterType: "radio", // только один вариант
   },
   {
-    name: "Location",
-    types: unique(tours.map((tour) => tour.location)),
+    name: "hotelStars",
+    label: "Hotel Stars",
+    types: ["3", "4", "5"],
+    filterType: "checkbox",
   },
   {
-    name: "Rating",
-    types: unique(tours.map((tour) => tour.rating.toString())),
+    name: "accommodationType",
+    label: "Accommodation",
+    types: ["hotel", "resort", "villa", "apartment"],
+    filterType: "checkbox",
+  },
+  {
+    name: "includedServices",
+    label: "Included Services",
+    types: [
+      "breakfast",
+      "lunch",
+      "dinner",
+      "wifi",
+      "transport",
+      "guide",
+      "insurance",
+    ],
+    filterType: "checkbox", // массив
+  },
+  {
+    name: "priceRange",
+    label: "Price Range",
+    types: ["0-500", "500-1000", "1000-2000", "2000+"],
+    filterType: "radio",
+  },
+  {
+    name: "rate",
+    label: "Rating",
+    types: ["3", "4", "5"],
+    filterType: "checkbox",
   },
 ];
 
 const TourismPage: React.FC = () => {
   const router = useRouter();
-  const [selectedFilters, setSelectedFilters] = useState<{ [key: string]: string[] }>({});
-  const [openFilterSections, setOpenFilterSections] = useState<{ [key: string]: boolean }>(
-    Object.fromEntries(filters.map((f) => [f.name, true]))
-  );
+  const token = useCookieValue("authToken");
+  const [selectedFilters, setSelectedFilters] = useState<{
+    [key: string]: string[];
+  }>({});
+  const [openFilterSections, setOpenFilterSections] = useState<{
+    [key: string]: boolean;
+  }>(Object.fromEntries(filters.map((f) => [f.name, true])));
+
+  const dispatch = useAppDispatch();
+  const toursData: any = useAppSelector((state) => state.tours.data);
+
+  // Функция для создания query объекта из выбранных фильтров
+  const buildQueryFromFilters = () => {
+    const query: any = {};
+
+    Object.keys(selectedFilters).forEach((filterKey) => {
+      const values = selectedFilters[filterKey];
+      if (values && values.length > 0) {
+        const filterConfig = filters.find((f) => f.name === filterKey);
+
+        if (filterKey === "priceRange") {
+          // Обработка диапазона цен
+          const priceRange = values[0]; // для radio берем первый (единственный)
+          if (priceRange === "0-500") {
+            query.minPrice = 0;
+            query.maxPrice = 500;
+          } else if (priceRange === "500-1000") {
+            query.minPrice = 500;
+            query.maxPrice = 1000;
+          } else if (priceRange === "1000-2000") {
+            query.minPrice = 1000;
+            query.maxPrice = 2000;
+          } else if (priceRange === "2000+") {
+            query.minPrice = 2000;
+          }
+        } else if (filterConfig?.filterType === "radio") {
+          // Для radio полей отправляем строку (первый элемент)
+          query[filterKey] = values[0];
+        } else {
+          // Для checkbox полей отправляем массив
+          query[filterKey] = values;
+        }
+      }
+    });
+
+    return query;
+  };
+
+  // Загружаем туры при изменении фильтров
+  useEffect(() => {
+    if (token) {
+      const query = buildQueryFromFilters();
+      dispatch(getTours({ token, query }));
+    }
+  }, [dispatch, selectedFilters, token]);
+
+  // Первоначальная загрузка
+  useEffect(() => {
+    if (token) {
+      dispatch(getTours({ token, query: {} }));
+    }
+  }, [dispatch, token]);
 
   const handleFilterChange = (category: string, value: string) => {
+    const filterConfig = filters.find((f) => f.name === category);
+
     setSelectedFilters((prev) => {
-      const current = prev[category] || [];
-      const updated = current.includes(value)
-        ? current.filter((v) => v !== value)
-        : [...current, value];
-      return {
-        ...prev,
-        [category]: updated,
-      };
+      if (filterConfig?.filterType === "radio") {
+        // Для radio - заменяем значение (только один выбор)
+        return {
+          ...prev,
+          [category]: [value],
+        };
+      } else {
+        // Для checkbox - добавляем/убираем из массива
+        const current = prev[category] || [];
+        const updated = current.includes(value)
+          ? current.filter((v) => v !== value)
+          : [...current, value];
+        return {
+          ...prev,
+          [category]: updated,
+        };
+      }
     });
   };
 
@@ -107,51 +159,87 @@ const TourismPage: React.FC = () => {
     }));
   };
 
-  const filteredTours = tours.filter((tour) => {
-    const categoryMatch =
-      !selectedFilters["Categories"] ||
-      selectedFilters["Categories"].length === 0 ||
-      selectedFilters["Categories"].includes(tour.type);
+  // Функция для очистки всех фильтров
+  const clearAllFilters = () => {
+    setSelectedFilters({});
+  };
 
-    const priceMatch =
-      !selectedFilters["Price"] ||
-      selectedFilters["Price"].length === 0 ||
-      selectedFilters["Price"].includes(tour.price.toString());
-
-    const locationMatch =
-      !selectedFilters["Location"] ||
-      selectedFilters["Location"].length === 0 ||
-      selectedFilters["Location"].includes(tour.location);
-
-    const ratingMatch =
-      !selectedFilters["Rating"] ||
-      selectedFilters["Rating"].length === 0 ||
-      selectedFilters["Rating"].includes(tour.rating.toString());
-
-    return categoryMatch && priceMatch && locationMatch && ratingMatch;
-  });
+  // Подсчет активных фильтров
+  const getActiveFiltersCount = () => {
+    return Object.values(selectedFilters).reduce((count, filterValues) => {
+      return count + (filterValues?.length || 0);
+    }, 0);
+  };
 
   return (
     <>
       <HeaderAccount LinksHead={LinksHead} />
       <div className={styles.container}>
         <aside className={styles.sidebar}>
-          <h2 className={styles.sidebarTitle}>Filters</h2>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <h2 className={styles.sidebarTitle}>Filters</h2>
+            {getActiveFiltersCount() > 0 && (
+              <button
+                onClick={clearAllFilters}
+                style={{
+                  background: "none",
+                  border: "1px solid #ccc",
+                  borderRadius: "4px",
+                  padding: "4px 8px",
+                  fontSize: "12px",
+                  cursor: "pointer",
+                }}
+              >
+                Clear ({getActiveFiltersCount()})
+              </button>
+            )}
+          </div>
+
           {filters.map((filter) => (
             <div key={filter.name} className={styles.filterBlock}>
               <div
                 className={styles.filterHeader}
                 onClick={() => toggleFilterSection(filter.name)}
-                style={{ cursor: "pointer", fontWeight: "bold", marginBottom: "5px" }}
+                style={{
+                  cursor: "pointer",
+                  fontWeight: "bold",
+                  marginBottom: "5px",
+                }}
               >
-                {filter.name} {openFilterSections[filter.name] ? "▾" : "▸"}
+                {filter.label} {openFilterSections[filter.name] ? "▾" : "▸"}
+                {selectedFilters[filter.name]?.length > 0 && (
+                  <span
+                    style={{
+                      marginLeft: "8px",
+                      fontSize: "12px",
+                      color: "#007bff",
+                      fontWeight: "normal",
+                    }}
+                  >
+                    ({selectedFilters[filter.name].length})
+                  </span>
+                )}
               </div>
               {openFilterSections[filter.name] &&
                 filter.types.map((type) => (
                   <label key={type} className={styles.checkboxLabel}>
                     <input
-                      type="checkbox"
-                      checked={selectedFilters[filter.name]?.includes(type) || false}
+                      type={
+                        filter.filterType === "radio" ? "radio" : "checkbox"
+                      }
+                      name={
+                        filter.filterType === "radio" ? filter.name : undefined
+                      }
+                      checked={
+                        selectedFilters[filter.name]?.includes(type) || false
+                      }
                       onChange={() => handleFilterChange(filter.name, type)}
                     />
                     {type}
@@ -160,9 +248,13 @@ const TourismPage: React.FC = () => {
             </div>
           ))}
         </aside>
-
-        <ProductCard data={filteredTours}/>
+        <div>
+            <ProductCard
+          data={Object.keys(toursData)?.length > 0 ? toursData?.data : []}
+        />
+  </div>
       </div>
+
     </>
   );
 };

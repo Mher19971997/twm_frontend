@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import styles from "./ChatPage.module.css";
 import LinearLogo from "../../../../public/assets/svg/LinearLogoHome";
@@ -11,6 +10,7 @@ const ChatWindow = () => {
   const [messages, setMessages] = useState([]);
 
   const dispatch = useAppDispatch();
+  const token = useCookieValue("authToken");
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -24,8 +24,7 @@ const ChatWindow = () => {
       const response = await dispatch(
         speakWithAi({
           text: input,
-          token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNTYzZDdmZTNmZjVlZjYzNWJlOWQ2Y2ZkMmZmYWFkODEyZDg2MDM3Mzc4NWFlOGIxZjYzOWRhYmQ0NTZkYzUyYzlhZTg0NzUiLCJpYXQiOjE3NTE3MTg0NTMsImV4cCI6MTc1MTgwNDg1M30.wel2gZUy5c4QqxAt2nFAdfukXaB4kXLE_lwB-lMGJZc",
+          token,
         })
       );
 

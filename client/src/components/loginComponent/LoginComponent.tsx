@@ -146,7 +146,6 @@ export default function LoginComponent({ onToggle }: AuthComponentProps) {
         userType: loginType
       })).unwrap();
 
-      console.log("Login successful!", result);
       setSuccess(true);
 
       setTimeout(() => {

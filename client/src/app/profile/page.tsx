@@ -1,6 +1,6 @@
 "use client";
 import HeaderAccount from "@/layouts/basicHeader/HeaderAccount";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useActionState } from "react";
 import { useRouter } from "next/navigation";
 import { parseCookies } from "nookies";
 import { LinksHead } from "../messages/page";
@@ -15,6 +15,13 @@ import { MailIcon } from "../../../public/assets/svg/MailIcon";
 import { GlobeIcon } from "../../../public/assets/svg/GlobeIcon";
 // import { styles } from "./styles";
 import styles from "./page.module.css";
+import { useDispatch } from "react-redux";
+import { profileOrganisation } from "@/redux/actions/profileOrganisation";
+import { useAppDispatch, useAppSelector } from "@/redux/types/types";
+import { profileIndividual } from "@/redux/actions/profileIndividual";
+import { profileClient } from "@/redux/actions/profileClient";
+import { getTours } from "@/redux/actions/toursAction";
+import { useCookieValue } from "@/helpers/getCookieInfo";
 
 const ProfilePage = () => {
   const router = useRouter();
@@ -29,26 +36,79 @@ const ProfilePage = () => {
   const [feedbackList, setFeedbackList] = useState([
     {
       id: 1,
-      author: "Անուշ Հակոբյան",
-      text: "Հրաշալի կազմակերպություն, պրոֆեսիոնալ գիդ և անմոռանալի տպավորություններ: Շնորհակալություն:",
+      author: "Anush Hakobyan",
+      text: "Excellent organization, professional guide and unforgettable impressions. Thank you!",
       rating: 5,
-      date: "2024 Մայիս",
+      date: "May 2024",
     },
     {
       id: 2,
-      author: "Դավիթ Սարգսյան",
-      text: "Բարձրակարգ սպասարկում և հետաքրքիր ծրագիր: Բոլորին խորհուրդ եմ տալիս:",
+      author: "David Sargsyan",
+      text: "High-quality service and interesting program. I recommend it to everyone!",
       rating: 5,
-      date: "2024 Ապրիլ",
+      date: "April 2024",
     },
     {
       id: 3,
-      author: "Մարիամ Ավետիսյան",
-      text: "Լավ կազմակերպված էր, բայց կարելի էր ավելի մանրամասն լինել մի քանի տեղերի մասին:",
+      author: "Mariam Avetisyan",
+      text: "It was well organized, but could have been more detailed about some places.",
       rating: 4,
-      date: "2024 Մարտ",
+      date: "March 2024",
     },
   ]);
+  const [completedTours, setCompletedTours] = useState<any>([]);
+
+  const dispatch = useAppDispatch();
+
+  const userType = useCookieValue("userType");
+  const token = useCookieValue("authToken");
+  const profileClientData = useAppSelector((state) => state.profileClient.data);
+  const profileIndividualData = useAppSelector(
+    (state) => state.profileIndividual.data
+  );
+  const profileOrganisationData = useAppSelector(
+    (state) => state.profileOrganisation.data
+  );
+
+  const tours: any = useAppSelector((state) => state.tours.data);
+
+  const profile: any =
+    userType === "auth_organisation"
+      ? profileOrganisationData
+      : userType === "auth_individual"
+      ? profileIndividualData
+      : profileClientData;
+
+  useEffect(() => {
+    if (token) {
+      dispatch(getTours({ token }));
+
+      const getToursData = async () => {
+        const response = await dispatch(
+          getTours({
+            token,
+            query: {
+              status: "finished",
+            },
+          })
+        );
+        setCompletedTours(response.payload.data);
+      };
+      getToursData();
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token) {
+      if (userType === "auth_organisation") {
+        dispatch(profileOrganisation(token));
+      } else if (userType === "auth_individual") {
+        dispatch(profileIndividual(token));
+      } else if (userType === "auth_client") {
+        dispatch(profileClient(token));
+      }
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     const checkAuth = () => {
@@ -59,13 +119,13 @@ const ProfilePage = () => {
         const userType = cookies.userType;
 
         if (!authToken || !refreshToken || !userType) {
-          router.push('/');
+          router.push("/");
           return;
         }
 
         setIsLoading(false);
       } catch (error) {
-        router.push('/');
+        router.push("/");
       }
     };
 
@@ -74,80 +134,20 @@ const ProfilePage = () => {
 
   if (isLoading) {
     return (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        fontSize: '18px',
-        color: '#6c757d'
-      }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          fontSize: "18px",
+          color: "#6c757d",
+        }}
+      >
         Loading...
       </div>
     );
   }
-
-  // Sample data - in real app this would come from props or API
-  const user = {
-    isTourismOrganization: true, // Change to false to see regular user profile
-    name: "Հայկական Արվենտուր",
-    firstName: "Արամ",
-    lastName: "Գրիգորյան",
-    image:
-      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop&crop=face",
-    address: "Երևան, Մաշտոցի պող. 15",
-    rating: 4.8,
-    reviewCount: 156,
-    phone: "+374 77 123456",
-    email: "info@armenianadventure.am",
-    website: "www.armenianadventure.am",
-  };
-
-  const completedTours = [
-    {
-      id: 1,
-      title: "Տաթևի Հուշարձան և Ջերմուկ",
-      duration: "2 օր",
-      participants: 25,
-      date: "2024 Մայիս",
-      price: "45,000 ֏",
-      image:
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=250&fit=crop",
-    },
-    {
-      id: 2,
-      title: "Սևանա Լիճ և Դիլիջան",
-      duration: "1 օր",
-      participants: 18,
-      date: "2024 Մարտ",
-      price: "25,000 ֏",
-      image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
-    },
-  ];
-
-  const upcomingTours = [
-    {
-      id: 3,
-      title: "Գեղարդ և Գառնի",
-      duration: "1 օր",
-      participants: 15,
-      date: "2024 Դեկտեմբեր 15",
-      price: "20,000 ֏",
-      image:
-        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400&h=250&fit=crop",
-    },
-    {
-      id: 4,
-      title: "Խոր Վիրապ և Արենի Գինեգործարան",
-      duration: "1 օր",
-      participants: 20,
-      date: "2024 Դեկտեմբեր 22",
-      price: "35,000 ֏",
-      image:
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop&sat=-20",
-    },
-  ];
 
   const feedback = feedbackList;
 
@@ -159,7 +159,7 @@ const ProfilePage = () => {
         author: newFeedback.author.trim(),
         text: newFeedback.text.trim(),
         rating: newFeedback.rating,
-        date: new Date().toLocaleDateString("hy-AM", {
+        date: new Date().toLocaleDateString("en-US", {
           year: "numeric",
           month: "long",
         }),
@@ -182,12 +182,10 @@ const ProfilePage = () => {
 
   const renderFeedbackForm = () => (
     <form className={styles.feedbackForm} onSubmit={handleSubmitFeedback}>
-      <h3 style={{ marginTop: 0, color: "#2c3e50" }}>
-        Ավելացնել նոր գնահատական
-      </h3>
+      <h3 style={{ marginTop: 0, color: "#2c3e50" }}>Add New Review</h3>
 
       <div className={styles.formGroup}>
-        <label className={styles.label}>Ձեր անունը *</label>
+        <label className={styles.label}>Your Name *</label>
         <input
           type="text"
           className={styles.input}
@@ -195,13 +193,13 @@ const ProfilePage = () => {
           onChange={(e) =>
             setNewFeedback({ ...newFeedback, author: e.target.value })
           }
-          placeholder="Մուտքագրեք ձեր անունը"
+          placeholder="Enter your name"
           required
         />
       </div>
 
       <div className={styles.formGroup}>
-        <label className={styles.label}>Գնահատական *</label>
+        <label className={styles.label}>Rating *</label>
         <div className={styles.ratingSelector}>
           {Array.from({ length: 5 }, (_, index) => (
             <button
@@ -218,34 +216,34 @@ const ProfilePage = () => {
             </button>
           ))}
           <span style={{ marginLeft: "10px", color: "#6c757d" }}>
-            {newFeedback.rating} աստղ
+            {newFeedback.rating} stars
           </span>
         </div>
       </div>
 
       <div className={styles.formGroup}>
-        <label className={styles.label}>Ձեր կարծիքը *</label>
+        <label className={styles.label}>Your Review *</label>
         <textarea
           className={styles.textarea}
           value={newFeedback.text}
           onChange={(e) =>
             setNewFeedback({ ...newFeedback, text: e.target.value })
           }
-          placeholder="Գրեք ձեր կարծիքը..."
+          placeholder="Write your review..."
           required
         />
       </div>
 
       <div className={styles.formButtons}>
         <button type="submit" className={styles.submitButton}>
-          Ուղարկել
+          Submit
         </button>
         <button
           type="button"
           className={styles.cancelButton}
           onClick={handleCancelFeedback}
         >
-          Չեղարկել
+          Cancel
         </button>
       </div>
     </form>
@@ -253,9 +251,10 @@ const ProfilePage = () => {
 
   const renderTourCard = (tour: any, type: any) => (
     <div
-      key={tour.id}
-      className={`${styles.tourCard} ${hoveredTour === tour.id ? styles.tourCardHover : ""
-        }`}
+      key={tour.uuid}
+      className={`${styles.tourCard} ${
+        hoveredTour === tour.id ? styles.tourCardHover : ""
+      }`}
       onMouseEnter={() => setHoveredTour(tour.id)}
       onMouseLeave={() => setHoveredTour(null)}
     >
@@ -267,27 +266,29 @@ const ProfilePage = () => {
         }}
       >
         <img
-          src={tour.image}
+          src={process.env.NEXT_PUBLIC_APP_IMAGE_URL + tour.img}
           alt={tour.title}
-          className={`${styles.tourImage} ${hoveredTour === tour.id ? styles.tourImageHover : ""
-            }`}
+          className={`${styles.tourImage} ${
+            hoveredTour === tour.id ? styles.tourImageHover : ""
+          }`}
         />
       </div>
       <div className={styles.tourContent}>
-        <div className={styles.tourTitle}>{tour.title}</div>
+        <div className={styles.tourTitle}>{tour.name}</div>
         <div className={styles.tourDetails}>
           <div className={styles.tourDetail}>
             <CalendarIcons size={16} />
             <span>
-              {tour.duration} | {tour.date}
+              {tour.start_date} | {tour.end_date}
             </span>
           </div>
           <div className={styles.tourDetail}>
             <UsersIcon size={16} />
-            <span>{tour.participants} մասնակից</span>
+            <span>{tour.participants} participants</span>
           </div>
         </div>
-        <div className={styles.tourPrice}>{tour.price}</div>
+        {/* <div className={styles.tourPrice}>{tour.price} $</div> */}
+        <div className={styles.tourPrice}>{tour.price} $</div>
       </div>
     </div>
   );
@@ -311,68 +312,80 @@ const ProfilePage = () => {
         <div className={styles.profileHeader}>
           <div className={styles.profileInfo}>
             <img
-              src={user.image}
+              src={(profile?.image as any) ?? "./assets/user.png"}
               alt="Profile"
               className={styles.profileImage}
             />
             <div className={styles.profileDetails}>
-              {user.isTourismOrganization ? (
+              {userType !== "auth_client" ? (
                 <>
-                  <h1 className={styles.organizationName}>{user.name}</h1>
+                  <h1 className={styles.organizationName}>{profile.name}</h1>
                   <div className={styles.address}>
-                    <MapPinIcon size={16} />
-                    <span>{user.address}</span>
+                    {/* <MapPinIcon size={16} /> */}
+                    {/* <span>{user.address}</span> */}
                   </div>
                 </>
               ) : (
                 <h1 className={styles.userName}>
-                  {user.firstName} {user.lastName}
+                  {profile.name}
+                  {/* //{user.lastName} */}
                 </h1>
               )}
 
               <div className={styles.rating}>
-                <div className={styles.stars}>{renderStars(user.rating)}</div>
-                <span>{user.rating}</span>
+                <div className={styles.stars}>
+                  {renderStars(profile?.rating)}
+                </div>
+                {/* <span>{user.rating}</span> */}
                 <span style={{ color: "#6c757d" }}>
-                  ({user.reviewCount} գնահատական)
+                  {/* ({user.reviewCount} reviews) */}
                 </span>
               </div>
 
-              {user.isTourismOrganization && (
+              {userType !== "auth_client" && (
                 <div className={styles.contactInfo}>
                   <div className={styles.contactItem}>
                     <PhoneIcon size={16} />
-                    <span>{user.phone}</span>
+                    <span>{profile.phone}</span>
                   </div>
                   <div className={styles.contactItem}>
                     <MailIcon size={16} />
-                    <span>{user.email}</span>
+                    <span>{profile.email}</span>
                   </div>
-                  <div className={styles.contactItem}>
+                  {/* <div className={styles.contactItem}>
                     <GlobeIcon size={16} />
                     <span>{user.website}</span>
-                  </div>
+                  </div> */}
                 </div>
               )}
             </div>
           </div>
+          <div
+            style={{ width: "100%", display: "flex", justifyContent: "end" }}
+          >
+            <button style={{ border: "none", background: "none", color:"#03379b", fontSize:"18px", fontWeight:"500" }} onClick={() => router.push("/createTour")}>
+              Create a Tour
+            </button>
+          </div>
         </div>
 
         {/* Tourism Organization Sections */}
-        {user.isTourismOrganization && (
+        {userType !== "auth_client" && (
           <>
             {/* Upcoming Tours */}
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Առաջարկվող Տուռեր</h2>
+              <h2 className={styles.sectionTitle}>Offered Tours</h2>
               <div className={styles.toursGrid}>
-                {upcomingTours.map((tour) => renderTourCard(tour, "upcoming"))}
+                {tours?.data?.map((tour: any) =>
+                  renderTourCard(tour, "upcoming")
+                )}
               </div>
             </div>
 
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Անցկացված Տուռեր</h2>
+              <h2 className={styles.sectionTitle}>Completed Tours</h2>
               <div className={styles.toursGrid}>
-                {completedTours.map((tour) =>
+                {completedTours?.map((tour: any) =>
                   renderTourCard(tour, "completed")
                 )}
               </div>
@@ -382,9 +395,7 @@ const ProfilePage = () => {
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>
                 <MessageCircleIcon size={24} />
-                <span style={{ marginLeft: "10px" }}>
-                  Հաճախորդների Կարծիքներ
-                </span>
+                <span style={{ marginLeft: "10px" }}>Customer Reviews</span>
               </h2>
 
               {!showFeedbackForm && (
@@ -392,7 +403,7 @@ const ProfilePage = () => {
                   className={styles.addFeedbackButton}
                   onClick={() => setShowFeedbackForm(true)}
                 >
-                  + Ավելացնել կարծիք
+                  + Add Review
                 </button>
               )}
 
