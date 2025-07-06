@@ -360,13 +360,24 @@ const ProfilePage = () => {
               )}
             </div>
           </div>
-          <div
-            style={{ width: "100%", display: "flex", justifyContent: "end" }}
-          >
-            <button style={{ border: "none", background: "none", color:"#03379b", fontSize:"18px", fontWeight:"500" }} onClick={() => router.push("/createTour")}>
-              Create a Tour
-            </button>
-          </div>
+          {userType !== "auth_client" && (
+            <div
+              style={{ width: "100%", display: "flex", justifyContent: "end" }}
+            >
+              <button
+                style={{
+                  border: "none",
+                  background: "none",
+                  color: "#03379b",
+                  fontSize: "18px",
+                  fontWeight: "500",
+                }}
+                onClick={() => router.push("/createTour")}
+              >
+                Create a Tour
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Tourism Organization Sections */}
