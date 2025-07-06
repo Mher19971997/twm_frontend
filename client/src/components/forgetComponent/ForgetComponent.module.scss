@@ -348,44 +348,6 @@
             }
         }
     }
-    // Add this to your LoginComponent.module.scss
-
-.forgotPasswordLink {
-  cursor: pointer;
-  color: #007bff;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  
-  &:hover {
-    color: #0056b3;
-    text-decoration: underline;
-  }
-  
-  &:active {
-    color: #004085;
-  }
-}
-
-// Alternative: If you want to style it within the existing forgotAndRemember section
-.forgotAndRemember {
-  p {
-    cursor: pointer;
-    transition: color 0.2s ease;
-    
-    &:hover {
-      color: #007bff;
-    }
-    
-    &.clickable {
-      color: #007bff;
-      text-decoration: underline;
-      
-      &:hover {
-        color: #0056b3;
-      }
-    }
-  }
-}
 }
 
 @media only screen and (max-width: 1680px) {
