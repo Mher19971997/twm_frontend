@@ -1,8 +1,12 @@
-import { useRouter } from "next/navigation";
+"use client"
+import { useParams, useRouter } from "next/navigation";
 import styles from "./ProductCard.module.css";
 
 const ProductCard = ({ data }: any) => {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale
+
   return (
     <>
       <main className={styles.cardsContainer}>
@@ -14,11 +18,26 @@ const ProductCard = ({ data }: any) => {
             style={{ cursor: "pointer" }}
           >
             <div className={styles.cardImageContainer}>
-            <img src={process.env.NEXT_PUBLIC_APP_IMAGE_URL +tour.img} alt={tour.name} />
+              <img src={process.env.NEXT_PUBLIC_APP_IMAGE_URL + tour.img} alt={tour.name} />
             </div>
             <div className={styles.cardContent}>
-              <h3>{tour.name}</h3>
-              <p>{tour.destination}</p>
+              <h3>
+                {
+                  (() => {
+                    if (typeof tour?.name === 'string') {
+                      try {
+                        const parsedName = JSON.parse(tour.name);
+                        if (parsedName && typeof parsedName === 'object' && parsedName[locale as any]) {
+                          return parsedName[locale as any];
+                        }
+                      } catch {
+                        return tour.name;
+                      }
+                    }
+                    return '';
+                  })()
+                }
+              </h3>              <p>{tour.destination}</p>
               <p>Price: ${tour.price}</p>
               <p>Location: {tour.location}</p>
               <p>Rating: {tour.rating}⭐</p>

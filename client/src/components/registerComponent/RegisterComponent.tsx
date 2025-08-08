@@ -259,17 +259,31 @@ export default function RegisterComponent({ onToggle }: AuthComponentProps) {
       localStorage.setItem('registrationStep', 'otp-verification');
       localStorage.setItem('verifiedEmail', email);
     } catch (error: any) {
-      console.error('Email check error:', error);
+      //   console?.error('Email check error:', error);
+      //   setEmailError(true);
+
+      //   // Handle specific error messages
+      //   if (error && typeof error === 'string' && error.toLowerCase().includes('already exists')) {
+      //     setServerError("This email is already registered. Please use a different email or try logging in.");
+      //   } else {
+      //     setServerError(error || "Email verification failed. Please try again.");
+      //   }
+      // } finally {
+      //   setIsCheckingEmail(false);
+
+      if (axios.isAxiosError(error)) {
+        console.error('Email check error (Axios):', error.response?.data || error.message);
+      } else {
+        console.error('Email check error (Generic):', JSON.stringify(error, null, 2));
+      }
+
       setEmailError(true);
 
-      // Handle specific error messages
-      if (error && typeof error === 'string' && error.toLowerCase().includes('already exists')) {
+      if (typeof error === 'string' && error.toLowerCase().includes('already exists')) {
         setServerError("This email is already registered. Please use a different email or try logging in.");
       } else {
-        setServerError(error || "Email verification failed. Please try again.");
+        setServerError(error?.message || "Email verification failed. Please try again.");
       }
-    } finally {
-      setIsCheckingEmail(false);
     }
   };
 
@@ -382,6 +396,8 @@ export default function RegisterComponent({ onToggle }: AuthComponentProps) {
         return "";
     }
   };
+
+  console.log("isCheckingEmailisCheckingEmail", isCheckingEmail)
 
   return (
     <div className={styles.registerComponent}>

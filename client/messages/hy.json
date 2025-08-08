@@ -1,0 +1,62 @@
+{
+  "LocaleSwitcher": {
+    "label": "Change language HY",
+    "locale": "{locale, select, ru {Russian} en {English} other {Armenian}}"
+  },
+  "Home": {
+    "label": "Ժամանակն է ուսումնասիրել աշխարհը",
+    "destination": "Նպատակակետ",
+    "offer": "Առաջարկներ",
+    "tour": "Տուրեր",
+    "blog": "Բլոգ",
+    "locale": "{locale, select, ru {Russian} en {English} other {Armenian}}"
+  },
+  "CreateTour": {
+    "destination": "Նպատակակետ",
+    "name": "Անուն",
+    "startDate": "Մեկնարկի ամսաթիվ",
+    "description": "Նկարագրություն",
+    "langEn": "Անգլերեն",
+    "langHy": "Հայերեն",
+    "langRu": "Ռուսերեն",
+    "priceAndRating": "Գին և գնահատական",
+    "price": "Գին",
+    "rating": "Գնահատական",
+    "tourCategory": "Տուրի կատեգորիա",
+    "status": "Կարգավիճակ",
+    "departureLocation": "Մեկնման վայր",
+    "availableSeats": "Ազատ տեղեր",
+    "totalGroupSize": "Խմբի ընդհանուր չափը",
+    "accommodationType": "Բնակության տեսակը",
+    "star": "Աստղ",
+    "includedServices": "Ներառված ծառայություններ",
+    "describeIncludedServices": "Նկարագրեք ներառված ծառայությունները",
+    "images": "Նկարներ",
+    "mainImage": "Գլխավոր Նկար",
+    "gallery": "Պատկերասրահ",
+    "select": "Ընտրել",
+    "selectImage": "Ընտրեք պատկեր",
+    "selectImages": "Ընտրեք պատկերներ",
+    "endDate": "Ավարտի ամսաթիվ",
+    "hotelStars": "Հյուրանոցի աստղեր",
+    "createNewTour": "Ստեղծել նոր շրջագայություն",
+    "fillInFields": "Լրացրեք բոլոր պարտադիր դաշտերը",
+    "createTour": "Ստեղծել շրջագայություն",
+    "basicInformation": "Հիմնական տեղեկություններ",
+    "tourName": "Տուրի անվանում",
+    "carpool": "Անհատական",
+    "group": "Խումբ",
+    "package": "Փաթեթ",
+    "hotel": "Հյուրանոց",
+    "hostel": "Հյուրատուն",
+    "apartment": "Բնակարան",
+    "villa": "Առանձնատուն",
+    "camping": "Քեմփինգ",
+    "active": "Ակտիվ",
+    "inactive": "Պասիվ",
+    "draft": "Սևագիր"
+  },
+  "LocaleLayout": {
+    "title": "TWM"
+  }
+}

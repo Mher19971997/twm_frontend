@@ -20,6 +20,8 @@ import { getTours } from "@/redux/actions/toursAction";
 import { useAppDispatch, useAppSelector } from "@/redux/types/types";
 import { useCookieValue } from "@/helpers/getCookieInfo";
 import { useRouter } from "next/navigation";
+import userImage from "../../../public/assets/user.png";
+
 export type LinkType = {
   href: string;
   icon: JSX.Element;
@@ -44,14 +46,14 @@ const links: LinksProps[] = [
     href: "/notifications",
     icon: <NotificationIcon />,
   },
-  {
-    href: "/messages",
-    icon: <MessagesIcon />,
-  },
-  {
-    href: "/settings",
-    icon: <SettingsIcon />,
-  },
+  // {
+  //   href: "/messages",
+  //   icon: <MessagesIcon />,
+  // },
+  // {
+  //   href: "/settings",
+  //   icon: <SettingsIcon />,
+  // },
 ];
 
 export default function HeaderAccount({ LinksHead }: any) {
@@ -116,11 +118,11 @@ export default function HeaderAccount({ LinksHead }: any) {
         <div className={styles.contentHeader}>
           <div className={styles.leftHeader}>
             <div className={styles.logo}>
-              <Link href="/profile">
+              <Link href="/">
                 <LinearLogo />
               </Link>
             </div>
-            <div className={styles.secondBlockLeftHeader}>
+            {/* <div className={styles.secondBlockLeftHeader}>
               <input type="search" placeholder="Start typing to search.." />
               <div className={styles.icons}>
                 {iconsWithBackground.map((item, index) => (
@@ -129,7 +131,7 @@ export default function HeaderAccount({ LinksHead }: any) {
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
           <div className={styles.rightHeader}>
             {links.map((item: any, index: number) => (
@@ -142,10 +144,10 @@ export default function HeaderAccount({ LinksHead }: any) {
               <div className={styles.avatar}>
                 <Link href="/profile">
                   <Image
-                    src={AccountHeadImage.src}
+                    src={userImage}
                     alt="accountImage"
-                    width={28}
-                    height={28}
+                    width={33}
+                    height={33}
                   />
                 </Link>
               </div>

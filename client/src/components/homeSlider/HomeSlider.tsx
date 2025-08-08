@@ -12,15 +12,17 @@ import FiveImg from "../../../public/assets/png/www.fonstola.ru.1687828675.2414.
 import SixImg from "../../../public/assets/png/gallery-3.jpg";
 import Discover from "../discover/Discover";
 import HomeHeader from "../homeHeader/HomeHeader";
+import { useTranslations } from "next-intl";
 
 export default function HomeSlider() {
+  const t = useTranslations('Home');
   const slides = [
-    { id: "slide_1", content: "It’s Time To Explore The World", background: EgyptLandscape.src },
-    { id: "slide_2", content: "It’s Time To Explore The World", background: SecondImage.src },
-    { id: "slide_3", content: "It’s Time To Explore The World", background: ThirdImg.src },
-    { id: "slide_4", content: "It’s Time To Explore The World", background: ForImg.src },
-    { id: "slide_5", content: "It’s Time To Explore The World", background: FiveImg.src },
-    { id: "slide_6", content: "It’s Time To Explore The World", background: SixImg.src },
+    { id: "slide_1", content: t('label'), background: EgyptLandscape.src },
+    { id: "slide_2", content: t('label'), background: SecondImage.src },
+    { id: "slide_3", content: t('label'), background: ThirdImg.src },
+    { id: "slide_4", content: t('label'), background: ForImg.src },
+    { id: "slide_5", content: t('label'), background: FiveImg.src },
+    { id: "slide_6", content: t('label'), background: SixImg.src },
   ];
 
   const [activeSlide, setActiveSlide] = useState(0);

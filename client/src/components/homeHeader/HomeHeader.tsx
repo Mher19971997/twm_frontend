@@ -15,21 +15,27 @@ interface iconsProps {
 const token = useCookieValue("authToken");
 
 export const icons: iconsProps[] = [
-  { svg: <Language />, className: styles.language, href: "/" },
+  {
+    svg: <LocaleSwitcher />, className: styles.language, href: "/"
+  },
   { svg: <User />, className: styles.user, href: token ? "/profile" : "/auth" },
   { svg: <Search />, className: styles.search, href: "/" },
 ];
 import Search from "../../../public/assets/svg/Search";
 import Menu from "../hamburger/Hamburger";
 import { useCookieValue } from "@/helpers/getCookieInfo";
+import LocaleSwitcher from "../languageSwitcher/LanguageSwitcher";
+import { useTranslations } from "next-intl";
 export default function HomeHeader() {
+  const t = useTranslations('Home');
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const ulMenu: { text: string; href: string }[] = [
-    { text: "Destination", href: "/" },
-    { text: "Offer", href: "/offer" },
-    { text: "Tour", href: "/tours" },
-    { text: "Blog", href: "/" },
+    { text: t("destination"), href: "/" },
+    { text: t("offer"), href: "/offer" },
+    { text: t("tour"), href: "/tours" },
+    { text: t("blog"), href: "/" },
   ];
 
   const toggleMenu = () => {
@@ -54,6 +60,7 @@ export default function HomeHeader() {
               );
             })}
           </ul>
+
           <div className={styles.icons}>
             {icons.map((item: any, index: number) => {
               return (

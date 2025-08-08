@@ -77,7 +77,7 @@ const AuthSlider: React.FC<SliderProps> = ({ slides }) => {
           }}
         >
           {slides.map((slide: any, index: number) => (
-            <div key={index} className={styles.sliderItem}>
+            <div key={`${slide}_${index}`} className={styles.sliderItem}>
               {slide}
             </div>
           ))}
@@ -88,7 +88,7 @@ const AuthSlider: React.FC<SliderProps> = ({ slides }) => {
           const actualIndex = startIndex + index;
           return (
             <button
-              key={actualIndex}
+              key={`${startIndex}_${endIndex}`}
               className={`${styles.dot} ${actualIndex === currentIndex ? styles.active : ""
                 }`}
               onClick={() => handleDotClick(actualIndex)}

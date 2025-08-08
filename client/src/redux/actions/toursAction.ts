@@ -6,6 +6,7 @@ import * as qs from "qs";
 export const getTours = createAsyncThunk(
   "all/tours",
   async ({ token, query = {} }: { token: string; query?: any }, thunkAPI) => {
+    console.log("token, query", token, query)
     try {
       const response = await instance.get(`tour?${qs.stringify(query)}`, {
         headers: {

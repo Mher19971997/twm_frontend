@@ -1,6 +1,6 @@
 "use client";
 import { profileClient } from "@/redux/actions/profileClient";
-import { getTours } from "@/redux/actions/toursAction";
+import { getTours } from "@/redux/thunk/toursAction";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {

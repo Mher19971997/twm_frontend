@@ -10,8 +10,8 @@ const NavigateAi = () => {
 
   // Don't render the button on /ai page
   
-  if (userType !==  "auth_client") return null;
-  if (pathname === "/ai") return null;
+  // if (userType !==  "auth_client") return null;
+  // if (pathname === "/ai") return null;
 
   return (
     <div

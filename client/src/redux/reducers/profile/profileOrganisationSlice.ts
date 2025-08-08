@@ -1,7 +1,5 @@
-"use client";
-import { profileIndividual } from "@/redux/actions/profileIndividual";
-import { profileOrganisation } from "@/redux/actions/profileOrganisation";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { profileOrganisation } from "../../thunk/profileOrganisationThunk";
 
 const initialState = {
   data: {},
@@ -9,7 +7,7 @@ const initialState = {
   error: "",
 };
 
-export const profileOrganisationSlice = createSlice({
+const profileOrganisationSlice = createSlice({
   name: "profileOrganisation",
   initialState,
   reducers: {},
@@ -17,17 +15,14 @@ export const profileOrganisationSlice = createSlice({
     builder.addCase(profileOrganisation.pending, (state) => {
       state.isLoading = true;
     });
-
-    builder.addCase(profileOrganisation.rejected, (state) => {
+    builder.addCase(profileOrganisation.rejected, (state, action) => {
       state.isLoading = false;
+      state.error = action.payload as string;
     });
-    builder.addCase(
-      profileOrganisation.fulfilled,
-      (state, action: PayloadAction<any>) => {
-        state.isLoading = false;
-        state.data = action.payload;
-      }
-    );
+    builder.addCase(profileOrganisation.fulfilled, (state, action: PayloadAction<any>) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
   },
 });
 

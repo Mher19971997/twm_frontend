@@ -1,0 +1,62 @@
+{
+    "LocaleSwitcher": {
+        "label": "Change language RU",
+        "locale": "{locale, select, ru {Russian} en {English} other {Armenian}}"
+    },
+    "Home": {
+        "label": "Пришло время исследовать мир",
+        "destination": "Пункт назначения",
+        "offer": "Предложение",
+        "tour": "Тур",
+        "blog": "Блог",
+        "locale": "{locale, select, ru {Russian} en {English} other {Armenian}}"
+    },
+    "CreateTour": {
+        "destination": "Пункт назначения",
+        "name": "Имя",
+        "startDate": "Дата начала",
+        "description": "Описание",
+        "langEn": "Английский",
+        "langHy": "Армянский",
+        "langRu": "Русский",
+        "priceAndRating": "Цена и Рейтинг",
+        "price": "Цена",
+        "rating": "Рейтинг",
+        "tourCategory": "Категория тура",
+        "status": "Статус",
+        "departureLocation": "Место отправления",
+        "availableSeats": "Доступные места",
+        "totalGroupSize": "Общий размер группы",
+        "accommodationType": "Тип размещения",
+        "star": "Звезда",
+        "includedServices": "Включенные услуги",
+        "describeIncludedServices": "Опишите включенные услуги",
+        "images": "Изображения",
+        "mainImage": "Основное Изображение",
+        "gallery": "Галерея",
+        "select": "Выбирать",
+        "selectImage": "Выбрать изображение",
+        "selectImages": "Выбрать изображения",
+        "endDate": "Дата окончания",
+        "hotelStars": "Звезды отеля",
+        "createNewTour": "Создать новый тур",
+        "fillInFields": "Заполните все обязательные поля",
+        "createTour": "Создать тур",
+        "basicInformation": "Основная информация",
+        "tourName": "Название тура",
+        "carpool": "Индивидуальный",
+        "group": "Групповой",
+        "package": "Пакет",
+        "hotel": "Отель",
+        "hostel": "Хостел",
+        "apartment": "Апартаменты",
+        "villa": "Вилла",
+        "camping": "Кемпинг",
+        "active": "Активно",
+        "inactive": "Неактивно",
+        "draft": "Черновик"
+    },
+    "LocaleLayout": {
+        "title": "TWM"
+    }
+}

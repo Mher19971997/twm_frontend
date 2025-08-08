@@ -1,4 +1,3 @@
-"use client";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../api/api";
 
@@ -14,7 +13,7 @@ export const profileOrganisation = createAsyncThunk(
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || "Something went wrong"
+        error.response?.data?.message || "Что-то пошло не так"
       );
     }
   }
